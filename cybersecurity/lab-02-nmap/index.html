@@ -1,411 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Cybersecurity Home Lab - Lab 2: Network Discovery with Nmap"
-    >
-
-    <title>Lab 02 | Network Discovery with Nmap | Kypton Lantz</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 02 — Network Discovery with Nmap | Kypton Lantz</title>
     <link rel="stylesheet" href="../../style.css">
 </head>
 
 <body>
 
-    <!-- =====================================================
-         Navigation
-         ===================================================== -->
-
+    <!-- Navigation -->
     <nav class="navbar">
-
         <div class="nav-container">
-
-            <a href="../../index.html" class="logo">
-                KL
-            </a>
+            <a href="../../index.html" class="logo">KL</a>
 
             <div class="nav-links">
-                <a href="../../index.html">
-                    Home
+                <a href="../../index.html">Home</a>
+                <a href="../../cybersecurity.html">Cybersecurity</a>
+                <a href="https://github.com/kalantz/kalantz.github.io/tree/main/cybersecurity/lab-02-nmap"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    GitHub
                 </a>
+            </div>
+        </div>
+    </nav>
 
-                <a href="../../cybersecurity.html">
-                    Cybersecurity
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-content">
+
+            <span class="lab-status">LAB 02 • COMPLETED</span>
+
+            <h1>Network Discovery with Nmap</h1>
+
+            <p class="hero-subtitle">
+                Network reconnaissance, service enumeration, OS fingerprinting,
+                and vulnerability discovery against an isolated cybersecurity lab.
+            </p>
+
+            <div class="hero-actions">
+                <a class="btn"
+                   href="https://github.com/kalantz/kalantz.github.io/tree/main/cybersecurity/lab-02-nmap"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    View Technical Documentation
                 </a>
             </div>
 
         </div>
-
-    </nav>
-
-
-    <!-- =====================================================
-         Hero
-         ===================================================== -->
-
-    <header class="hero">
-
-        <div class="hero-content">
-
-            <span class="lab-status">
-                LAB 02 • COMPLETED
-            </span>
-
-            <h1>
-                Network Discovery with Nmap
-            </h1>
-
-            <p class="hero-subtitle">
-                Performing network reconnaissance to discover hosts,
-                enumerate services, identify operating systems, and
-                assess exposed vulnerabilities.
-            </p>
-
-        </div>
-
     </header>
 
 
     <main class="content-narrow">
 
-
-        <!-- =================================================
-             Overview
-             ================================================= -->
-
+        <!-- Overview -->
         <section class="content-section">
-
-            <h2>
-                Overview
-            </h2>
+            <h2>Overview</h2>
 
             <p>
-                Building on the isolated environment created in Lab 01,
-                this lab focused on network reconnaissance using Nmap.
-                The objective was to identify live systems, enumerate
-                exposed services, fingerprint the target operating system,
-                and identify potential vulnerabilities.
+                In this lab, I used Nmap to perform network reconnaissance against
+                the isolated Host-Only network created in Lab 1. The objective was
+                to identify active systems, enumerate exposed services, determine
+                service versions, fingerprint the operating system, and identify
+                potential vulnerabilities.
             </p>
 
             <p>
-                No exploitation was performed during this lab. The focus
-                remained on reconnaissance and analysis, establishing an
-                understanding of the target's attack surface before any
-                offensive activity.
+                The activity was limited to reconnaissance and analysis. No services
+                were exploited during this lab. The results establish the information
+                needed for later vulnerability validation and exploitation exercises.
             </p>
-
         </section>
 
 
-        <!-- =================================================
-             Objectives
-             ================================================= -->
-
+        <!-- Objectives -->
         <section class="content-section">
-
-            <h2>
-                Objectives
-            </h2>
-
-            <ul>
-
-                <li>
-                    Discover live hosts on the isolated network.
-                </li>
-
-                <li>
-                    Perform TCP and UDP port scans.
-                </li>
-
-                <li>
-                    Identify service versions.
-                </li>
-
-                <li>
-                    Fingerprint the target operating system.
-                </li>
-
-                <li>
-                    Use Nmap NSE scripts for additional enumeration.
-                </li>
-
-                <li>
-                    Identify publicly documented vulnerabilities.
-                </li>
-
-                <li>
-                    Analyze findings from an attacker's perspective.
-                </li>
-
-            </ul>
-
-        </section>
-
-
-        <!-- =================================================
-             Lab Environment
-             ================================================= -->
-
-        <section class="content-section">
-
-            <h2>
-                Lab Environment
-            </h2>
+            <h2>Objectives</h2>
 
             <div class="result-grid">
 
                 <div class="result-card">
-
-                    <h3>
-                        Attacker
-                    </h3>
-
+                    <h3>Host Discovery</h3>
                     <p>
-                        Kali Linux security workstation at
-                        <code>192.168.56.40</code>.
+                        Identify active systems on the isolated lab network.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        Target
-                    </h3>
-
+                    <h3>Port Enumeration</h3>
                     <p>
-                        Metasploitable 2 at
-                        <code>192.168.56.50</code>.
+                        Identify exposed TCP and UDP services.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        Network
-                    </h3>
-
+                    <h3>Service Identification</h3>
                     <p>
-                        Isolated VirtualBox Host-Only network using the
-                        <code>192.168.56.0/24</code> subnet.
+                        Determine software and service versions running on the target.
                     </p>
-
                 </div>
 
+                <div class="result-card">
+                    <h3>OS Fingerprinting</h3>
+                    <p>
+                        Identify the target operating system using Nmap fingerprinting.
+                    </p>
+                </div>
 
                 <div class="result-card">
-
-                    <h3>
-                        Tool
-                    </h3>
-
+                    <h3>NSE Enumeration</h3>
                     <p>
-                        Nmap 7.99 running on Kali GNU/Linux 2026.2.
+                        Use Nmap scripting to gather additional service information.
                     </p>
+                </div>
 
+                <div class="result-card">
+                    <h3>Vulnerability Discovery</h3>
+                    <p>
+                        Identify potentially vulnerable services for later validation.
+                    </p>
                 </div>
 
             </div>
-
         </section>
 
 
-        <!-- =================================================
-             Reconnaissance Process
-             ================================================= -->
-
+        <!-- Lab Environment -->
         <section class="content-section">
+            <h2>Lab Environment</h2>
 
-            <h2>
-                Reconnaissance Process
-            </h2>
+            <div class="table-wrapper">
+                <table class="lab-table">
 
-            <p>
-                The reconnaissance process progressed from broad network
-                discovery toward increasingly detailed analysis of the
-                target system.
-            </p>
+                    <tr>
+                        <th>Component</th>
+                        <th>Details</th>
+                    </tr>
+
+                    <tr>
+                        <td>Virtualization</td>
+                        <td>Oracle VirtualBox</td>
+                    </tr>
+
+                    <tr>
+                        <td>Attacker</td>
+                        <td>KALI-ATTACK — 192.168.56.40</td>
+                    </tr>
+
+                    <tr>
+                        <td>Target</td>
+                        <td>METASPLOITABLE2 — 192.168.56.50</td>
+                    </tr>
+
+                    <tr>
+                        <td>Network</td>
+                        <td>192.168.56.0/24 Host-Only Network</td>
+                    </tr>
+
+                    <tr>
+                        <td>Operating System</td>
+                        <td>Kali GNU/Linux 2026.2</td>
+                    </tr>
+
+                    <tr>
+                        <td>Primary Tool</td>
+                        <td>Nmap 7.99</td>
+                    </tr>
+
+                </table>
+            </div>
+        </section>
 
 
-            <div class="result-grid">
+        <!-- Reconnaissance Process -->
+        <section class="content-section">
+            <h2>Reconnaissance Process</h2>
 
-                <div class="result-card">
+            <div class="lab-grid">
 
-                    <h3>
-                        01 — Host Discovery
-                    </h3>
-
+                <div class="lab-card">
+                    <span class="lab-number">01</span>
+                    <h3>Host Discovery</h3>
                     <p>
-                        Identified active systems on the isolated network
-                        using an Nmap ping sweep.
+                        A ping sweep identified active systems on the isolated
+                        Host-Only network.
                     </p>
-
                 </div>
 
-
-                <div class="result-card">
-
-                    <h3>
-                        02 — Port Enumeration
-                    </h3>
-
+                <div class="lab-card">
+                    <span class="lab-number">02</span>
+                    <h3>Port Enumeration</h3>
                     <p>
-                        Identified open TCP and UDP ports exposed by
-                        the target.
+                        TCP and UDP scans identified exposed network services
+                        on the Metasploitable target.
                     </p>
-
                 </div>
 
-
-                <div class="result-card">
-
-                    <h3>
-                        03 — Service Identification
-                    </h3>
-
+                <div class="lab-card">
+                    <span class="lab-number">03</span>
+                    <h3>Service Identification</h3>
                     <p>
-                        Determined software and service versions running
-                        on exposed ports.
+                        Version detection provided software and service information
+                        useful for vulnerability research.
                     </p>
-
                 </div>
 
-
-                <div class="result-card">
-
-                    <h3>
-                        04 — OS Fingerprinting
-                    </h3>
-
+                <div class="lab-card">
+                    <span class="lab-number">04</span>
+                    <h3>OS Fingerprinting</h3>
                     <p>
-                        Used Nmap OS detection to identify the underlying
+                        Nmap OS detection identified the underlying Linux-based
                         operating system.
                     </p>
-
                 </div>
 
-
-                <div class="result-card">
-
-                    <h3>
-                        05 — NSE Enumeration
-                    </h3>
-
+                <div class="lab-card">
+                    <span class="lab-number">05</span>
+                    <h3>NSE Enumeration</h3>
                     <p>
-                        Used default Nmap scripts to collect additional
-                        information about exposed services.
+                        Default Nmap scripts gathered additional information about
+                        exposed services and configurations.
                     </p>
-
                 </div>
 
-
-                <div class="result-card">
-
-                    <h3>
-                        06 — Vulnerability Enumeration
-                    </h3>
-
+                <div class="lab-card">
+                    <span class="lab-number">06</span>
+                    <h3>Vulnerability Enumeration</h3>
                     <p>
-                        Used Nmap vulnerability scripts to identify
-                        potentially vulnerable services and configurations.
+                        Vulnerability-focused NSE scripts identified documented
+                        weaknesses for future investigation.
                     </p>
-
                 </div>
 
             </div>
-
         </section>
 
 
-        <!-- =================================================
-             Host Discovery
-             ================================================= -->
-
+        <!-- Host Discovery -->
         <section class="content-section">
 
-            <h2>
-                Host Discovery
-            </h2>
+            <h2>01 — Host Discovery</h2>
 
             <p>
-                An Nmap ping sweep was used to identify active systems
-                before performing deeper enumeration.
+                The initial Nmap host discovery scan used a ping sweep to identify
+                systems responding on the isolated network.
             </p>
 
             <div class="evidence-grid">
 
                 <div class="evidence-card">
-
                     <img
                         src="screenshots/host-discovery-ping-sweep.png"
-                        alt="Nmap host discovery ping sweep showing active systems on the isolated network"
+                        alt="Nmap host discovery ping sweep results"
                         class="lab-image"
                     >
-
                     <p class="image-caption">
-                        Nmap host discovery across the isolated network
+                        Nmap host discovery results across the 192.168.56.0/24 network.
                     </p>
-
                 </div>
 
             </div>
 
-
             <div class="result-grid">
 
                 <div class="result-card">
-
-                    <h3>
-                        Five Lab Systems
-                    </h3>
-
+                    <h3>Five Lab Systems</h3>
                     <p>
-                        The scan identified the five virtual machines
-                        comprising the laboratory environment.
+                        The expected virtual machines were visible from the
+                        attacker system.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        VirtualBox Infrastructure
-                    </h3>
-
+                    <h3>VirtualBox Infrastructure</h3>
                     <p>
-                        The VirtualBox Host-Only adapter at
-                        <code>192.168.56.1</code> was also identified.
+                        The Host-Only adapter appeared at 192.168.56.1.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        Unexpected Response
-                    </h3>
-
+                    <h3>Unexpected .100 Address</h3>
                     <p>
-                        An additional response from
-                        <code>192.168.56.100</code> was investigated and
-                        identified as the disabled VirtualBox DHCP service,
-                        rather than another laboratory VM.
+                        An additional address was investigated and determined
+                        to be associated with the disabled VirtualBox DHCP service,
+                        rather than an unexpected lab host.
                     </p>
-
                 </div>
 
             </div>
@@ -413,128 +294,55 @@
         </section>
 
 
-        <!-- =================================================
-             Port and Service Enumeration
-             ================================================= -->
-
+        <!-- Port Enumeration -->
         <section class="content-section">
 
-            <h2>
-                Port &amp; Service Enumeration
-            </h2>
+            <h2>02 — Port &amp; Service Enumeration</h2>
 
             <p>
-                Multiple Nmap scan types were used to build a progressively
-                more detailed picture of the target's exposed attack surface.
+                TCP and UDP scans were used to identify the network attack surface
+                exposed by Metasploitable2.
             </p>
-
 
             <div class="evidence-grid">
 
                 <div class="evidence-card">
-
                     <img
                         src="screenshots/tcp-connect-metasploitable.png"
-                        alt="Nmap TCP Connect scan of Metasploitable 2"
+                        alt="Nmap TCP Connect scan against Metasploitable"
                         class="lab-image"
                     >
-
                     <p class="image-caption">
-                        TCP Connect scan
+                        TCP Connect scan identifying exposed TCP ports.
                     </p>
-
-                </div>
-
-
-                <div class="evidence-card">
-
-                    <img
-                        src="screenshots/service-version-detection-metasploitable.png"
-                        alt="Nmap service version detection scan of Metasploitable 2"
-                        class="lab-image"
-                    >
-
-                    <p class="image-caption">
-                        Service version detection
-                    </p>
-
-                </div>
-
-
-                <div class="evidence-card">
-
-                    <img
-                        src="screenshots/syn-scan-metasploitable.png"
-                        alt="Nmap SYN scan of Metasploitable 2"
-                        class="lab-image"
-                    >
-
-                    <p class="image-caption">
-                        SYN scan
-                    </p>
-
-                </div>
-
-
-                <div class="evidence-card">
-
-                    <img
-                        src="screenshots/udp-scan-metaspointable.png"
-                        alt="Nmap UDP scan of Metasploitable 2"
-                        class="lab-image"
-                    >
-
-                    <p class="image-caption">
-                        Top-20 UDP scan
-                    </p>
-
                 </div>
 
             </div>
 
-
             <div class="result-grid">
 
                 <div class="result-card">
-
-                    <h3>
-                        23 TCP Ports
-                    </h3>
-
+                    <h3>23 TCP Ports</h3>
                     <p>
-                        The TCP scan identified 23 open TCP ports on the
+                        The TCP scan identified 23 exposed ports on the
                         intentionally vulnerable target.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        Legacy Services
-                    </h3>
-
+                    <h3>Legacy Services</h3>
                     <p>
                         Exposed services included FTP, Telnet, HTTP, SMB,
-                        MySQL, PostgreSQL, IRC, and Tomcat.
+                        databases, IRC, and Tomcat.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        UDP Services
-                    </h3>
-
+                    <h3>UDP Services</h3>
                     <p>
-                        UDP enumeration identified open or filtered
-                        services including DNS, NetBIOS Name Service,
-                        and NetBIOS Datagram Service.
+                        The top-20 UDP scan identified services including DNS
+                        and NetBIOS-related ports.
                     </p>
-
                 </div>
 
             </div>
@@ -542,259 +350,194 @@
         </section>
 
 
-        <!-- =================================================
-             Service Versions
-             ================================================= -->
-
+        <!-- Service Version Detection -->
         <section class="content-section">
 
-            <h2>
-                Service Version Detection
-            </h2>
+            <h2>03 — Service Version Detection</h2>
 
             <p>
-                Nmap service detection provided additional information
-                about the software exposed by the target.
+                Nmap service version detection was used to determine the software
+                and versions associated with the exposed services.
             </p>
 
+            <div class="evidence-grid">
+
+                <div class="evidence-card">
+                    <img
+                        src="screenshots/service-version-detection-metasploitable.png"
+                        alt="Nmap service version detection results"
+                        class="lab-image"
+                    >
+                    <p class="image-caption">
+                        Nmap service and version detection against Metasploitable2.
+                    </p>
+                </div>
+
+            </div>
 
             <div class="table-wrapper">
 
                 <table class="lab-table">
 
-                    <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Detected Version</th>
+                    </tr>
 
-                        <tr>
-                            <th>Service</th>
-                            <th>Observed Version</th>
-                        </tr>
+                    <tr>
+                        <td>FTP</td>
+                        <td>vsFTPd 2.3.4</td>
+                    </tr>
 
-                    </thead>
+                    <tr>
+                        <td>HTTP</td>
+                        <td>Apache 2.2.8</td>
+                    </tr>
 
-                    <tbody>
+                    <tr>
+                        <td>SMB</td>
+                        <td>Samba 3.x</td>
+                    </tr>
 
-                        <tr>
-                            <td>FTP</td>
-                            <td>vsFTPd 2.3.4</td>
-                        </tr>
+                    <tr>
+                        <td>IRC</td>
+                        <td>UnrealIRCd</td>
+                    </tr>
 
-                        <tr>
-                            <td>HTTP</td>
-                            <td>Apache 2.2.8</td>
-                        </tr>
+                    <tr>
+                        <td>Tomcat</td>
+                        <td>Apache Tomcat 5.5</td>
+                    </tr>
 
-                        <tr>
-                            <td>SMB</td>
-                            <td>Samba 3.x</td>
-                        </tr>
+                    <tr>
+                        <td>MySQL</td>
+                        <td>MySQL 5.0</td>
+                    </tr>
 
-                        <tr>
-                            <td>IRC</td>
-                            <td>UnrealIRCd</td>
-                        </tr>
-
-                        <tr>
-                            <td>Tomcat</td>
-                            <td>Tomcat 5.5</td>
-                        </tr>
-
-                        <tr>
-                            <td>MySQL</td>
-                            <td>MySQL 5.0</td>
-                        </tr>
-
-                        <tr>
-                            <td>PostgreSQL</td>
-                            <td>PostgreSQL 8.3</td>
-                        </tr>
-
-                    </tbody>
+                    <tr>
+                        <td>PostgreSQL</td>
+                        <td>PostgreSQL 8.3</td>
+                    </tr>
 
                 </table>
 
             </div>
 
             <p>
-                Several of the identified versions are obsolete and have
-                publicly documented security issues, making service
-                identification an important step in understanding the
-                target's potential attack surface.
+                These versions provide useful intelligence for vulnerability
+                research because several are historically associated with
+                publicly documented security weaknesses.
             </p>
 
         </section>
 
 
-        <!-- =================================================
-             Operating System Detection
-             ================================================= -->
-
+        <!-- OS Detection -->
         <section class="content-section">
 
-            <h2>
-                Operating System Detection
-            </h2>
+            <h2>04 — Operating System Detection</h2>
 
             <p>
-                Nmap OS fingerprinting was used to identify the underlying
-                operating system of the target.
+                Nmap OS fingerprinting was used to identify the operating system
+                running on the target.
             </p>
-
 
             <div class="evidence-grid">
 
                 <div class="evidence-card">
-
                     <img
                         src="screenshots/os-detection-metasploitable.png"
-                        alt="Nmap operating system detection identifying the Metasploitable target"
+                        alt="Nmap operating system detection results"
                         class="lab-image"
                     >
-
                     <p class="image-caption">
-                        Nmap operating system fingerprinting
+                        Nmap OS fingerprinting identified the target as a
+                        Linux 2.6-based system.
                     </p>
-
                 </div>
 
             </div>
 
+            <div class="result-grid">
 
-            <div class="result-card">
+                <div class="result-card">
+                    <h3>Linux-Based Target</h3>
+                    <p>
+                        Nmap identified the target as a Linux 2.6-based system,
+                        consistent with Metasploitable 2.
+                    </p>
+                </div>
 
-                <h3>
-                    Result
-                </h3>
-
-                <p>
-                    Nmap identified the target as a Linux 2.6-based system,
-                    consistent with the known Metasploitable 2 environment.
-                </p>
+                <div class="result-card">
+                    <h3>Reconnaissance Value</h3>
+                    <p>
+                        OS information helps narrow the technologies and
+                        vulnerabilities that should be investigated during
+                        later testing.
+                    </p>
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- =================================================
-             NSE Enumeration
-             ================================================= -->
-
+        <!-- NSE -->
         <section class="content-section">
 
-            <h2>
-                NSE Enumeration
-            </h2>
+            <h2>05 — Nmap Scripting Engine</h2>
 
             <p>
-                Nmap's default NSE scripts were used to gather additional
-                information about the services exposed by the target.
+                Default NSE scripts were used to gather additional information
+                about the services discovered during enumeration.
             </p>
-
 
             <div class="evidence-grid">
 
                 <div class="evidence-card">
-
                     <img
                         src="screenshots/default-nse-scan-metasploitable1.png"
-                        alt="Nmap default NSE script scan of Metasploitable 2"
+                        alt="Nmap default NSE scan results"
                         class="lab-image"
                     >
-
                     <p class="image-caption">
-                        Default NSE enumeration
+                        Representative output from the default NSE scan.
                     </p>
-
-                </div>
-
-
-                <div class="evidence-card">
-
-                    <img
-                        src="screenshots/default-nse-scan-metasploitable2.png"
-                        alt="Additional output from Nmap default NSE script scan"
-                        class="lab-image"
-                    >
-
-                    <p class="image-caption">
-                        NSE service enumeration
-                    </p>
-
-                </div>
-
-
-                <div class="evidence-card">
-
-                    <img
-                        src="screenshots/default-nse-scan-metasploitable3.png"
-                        alt="Final output from Nmap default NSE script scan"
-                        class="lab-image"
-                    >
-
-                    <p class="image-caption">
-                        Additional service metadata
-                    </p>
-
                 </div>
 
             </div>
 
-
             <div class="result-grid">
 
                 <div class="result-card">
-
-                    <h3>
-                        Anonymous FTP
-                    </h3>
-
+                    <h3>Anonymous FTP</h3>
                     <p>
-                        Anonymous FTP access was identified during
-                        enumeration.
+                        NSE identified anonymous FTP access on the target.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        Web Services
-                    </h3>
-
+                    <h3>Web Services</h3>
                     <p>
-                        Apache and Tomcat services were identified along
-                        with HTTP metadata and page titles.
+                        HTTP and Tomcat services provided additional service
+                        metadata and web information.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        Samba
-                    </h3>
-
+                    <h3>Samba</h3>
                     <p>
-                        Samba configuration and additional SMB information
-                        were exposed through script enumeration.
+                        NSE gathered additional information about the exposed
+                        SMB/Samba service.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        Database Information
-                    </h3>
-
+                    <h3>Database Information</h3>
                     <p>
-                        Additional information about database services was
-                        exposed through reconnaissance.
+                        Database services exposed additional version and
+                        service information during enumeration.
                     </p>
-
                 </div>
 
             </div>
@@ -802,143 +545,76 @@
         </section>
 
 
-        <!-- =================================================
-             Vulnerability Enumeration
-             ================================================= -->
-
+        <!-- Vulnerability Enumeration -->
         <section class="content-section">
 
-            <h2>
-                Vulnerability Enumeration
-            </h2>
+            <h2>06 — Vulnerability Enumeration</h2>
 
             <p>
-                Nmap vulnerability scripts were used to search for
-                publicly documented weaknesses associated with the
-                exposed services and configurations.
+                Nmap's vulnerability-focused NSE scripts were used to identify
+                potentially vulnerable services and configurations.
             </p>
-
 
             <div class="evidence-grid">
 
                 <div class="evidence-card">
-
                     <img
                         src="screenshots/vulnerability-script-scan-metasploitable1.png"
-                        alt="Beginning of Nmap vulnerability script scan against Metasploitable 2"
+                        alt="Nmap vulnerability enumeration results"
                         class="lab-image"
                     >
-
                     <p class="image-caption">
-                        Vulnerability enumeration
+                        Representative vulnerability enumeration results.
                     </p>
-
-                </div>
-
-
-                <div class="evidence-card">
-
-                    <img
-                        src="screenshots/vulnerability-script-scan-metasploitable6.png"
-                        alt="Nmap vulnerability script scan output"
-                        class="lab-image"
-                    >
-
-                    <p class="image-caption">
-                        Vulnerability scan findings
-                    </p>
-
-                </div>
-
-
-                <div class="evidence-card">
-
-                    <img
-                        src="screenshots/vulnerability-script-scan-metasploitable7.png"
-                        alt="Final output from Nmap vulnerability script scan"
-                        class="lab-image"
-                    >
-
-                    <p class="image-caption">
-                        Additional vulnerability findings
-                    </p>
-
                 </div>
 
             </div>
-
 
             <div class="result-grid">
 
                 <div class="result-card">
-
-                    <h3>
-                        vsFTPd 2.3.4
-                    </h3>
-
+                    <h3>vsFTPd 2.3.4</h3>
                     <p>
-                        CVE-2011-2523, the documented vsFTPd 2.3.4
-                        backdoor vulnerability, was identified.
+                        Nmap identified the historically documented
+                        CVE-2011-2523 backdoor associated with vsFTPd 2.3.4.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        UnrealIRCd
-                    </h3>
-
+                    <h3>UnrealIRCd</h3>
                     <p>
-                        A documented UnrealIRCd backdoor vulnerability
-                        was identified.
+                        The scan identified a documented UnrealIRCd backdoor
+                        vulnerability.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        SSL/TLS Weaknesses
-                    </h3>
-
+                    <h3>SSL/TLS Weaknesses</h3>
                     <p>
-                        Findings included POODLE, Logjam, weak
-                        Diffie-Hellman parameters, and CCS Injection.
+                        Findings included POODLE, Logjam, weak Diffie-Hellman
+                        parameters, and CCS Injection indicators.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        Web Weaknesses
-                    </h3>
-
+                    <h3>Web Weaknesses</h3>
                     <p>
-                        Slowloris and HTTP TRACE were identified among
-                        the web-related findings.
+                        Additional findings included Slowloris exposure and
+                        HTTP TRACE being enabled.
                     </p>
-
                 </div>
 
             </div>
-
 
             <div class="lab-group">
 
-                <h3>
-                    Reconnaissance Only
-                </h3>
+                <h3>Reconnaissance Only</h3>
 
                 <p>
-                    No exploitation was performed during this lab.
-                    Findings were documented for validation and
-                    potential follow-up during later offensive security
-                    exercises.
+                    Vulnerability scan results were treated as reconnaissance
+                    findings rather than proof of successful exploitation.
+                    Exploitability will be validated separately during later
+                    security testing exercises.
                 </p>
 
             </div>
@@ -946,79 +622,42 @@
         </section>
 
 
-        <!-- =================================================
-             Results
-             ================================================= -->
-
+        <!-- Results -->
         <section class="content-section">
 
-            <h2>
-                Results
-            </h2>
-
-            <p>
-                The reconnaissance process successfully identified the
-                intended target, exposed services, operating system,
-                service versions, and numerous publicly documented
-                vulnerabilities.
-            </p>
+            <h2>Results</h2>
 
             <div class="result-grid">
 
                 <div class="result-card">
-
-                    <h3>
-                        Network Visibility
-                    </h3>
-
+                    <h3>Network Visibility</h3>
                     <p>
-                        Active systems and VirtualBox network infrastructure
-                        were identified through host discovery.
+                        Identified active systems across the isolated lab network.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        Attack Surface
-                    </h3>
-
+                    <h3>Attack Surface</h3>
                     <p>
-                        TCP and UDP enumeration revealed numerous exposed
-                        services on the intentionally vulnerable target.
+                        Enumerated 23 TCP ports and multiple UDP services on
+                        the intentionally vulnerable target.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        Service Intelligence
-                    </h3>
-
+                    <h3>Service Intelligence</h3>
                     <p>
-                        Version detection and NSE scripts provided detailed
-                        information about exposed software and configurations.
+                        Identified software versions across FTP, HTTP, SMB,
+                        IRC, Tomcat, MySQL, and PostgreSQL services.
                     </p>
-
                 </div>
 
-
                 <div class="result-card">
-
-                    <h3>
-                        Vulnerability Intelligence
-                    </h3>
-
+                    <h3>Vulnerability Intelligence</h3>
                     <p>
-                        Multiple publicly documented weaknesses were
-                        identified for later validation and controlled
-                        exploitation.
+                        Identified multiple documented vulnerabilities and
+                        weaknesses for future validation.
                     </p>
-
                 </div>
 
             </div>
@@ -1026,39 +665,37 @@
         </section>
 
 
-        <!-- =================================================
-             Lessons Learned
-             ================================================= -->
-
+        <!-- Lessons -->
         <section class="content-section">
 
-            <h2>
-                Lessons Learned
-            </h2>
+            <h2>Lessons Learned</h2>
 
-            <ul>
+            <ul class="lab-list">
 
                 <li>
-                    Enumeration should precede exploitation.
+                    Network enumeration should precede exploitation so that
+                    testing is based on observed attack surface rather than assumptions.
                 </li>
 
                 <li>
-                    Different Nmap scan types provide different levels
-                    of visibility and speed.
+                    Different Nmap scan techniques provide different visibility,
+                    speed, and connection behavior.
                 </li>
 
                 <li>
-                    Service version detection significantly increases
-                    reconnaissance value.
+                    Service version detection significantly increases the
+                    usefulness of reconnaissance results.
                 </li>
 
                 <li>
-                    NSE scripts can rapidly enrich reconnaissance results.
+                    NSE scripts can provide considerably more context than
+                    basic port enumeration.
                 </li>
 
                 <li>
-                    Vulnerability scan results require validation before
-                    treating them as confirmed vulnerabilities.
+                    Vulnerability scanner output should be treated as an
+                    investigation lead and validated before concluding that
+                    a vulnerability is exploitable.
                 </li>
 
             </ul>
@@ -1066,56 +703,38 @@
         </section>
 
 
-        <!-- =================================================
-             MITRE ATT&CK
-             ================================================= -->
-
+        <!-- ATT&CK -->
         <section class="content-section">
 
-            <h2>
-                MITRE ATT&amp;CK Mapping
-            </h2>
+            <h2>MITRE ATT&amp;CK Mapping</h2>
 
             <div class="table-wrapper">
 
                 <table class="lab-table">
 
-                    <thead>
+                    <tr>
+                        <th>Technique</th>
+                        <th>ID</th>
+                        <th>Application</th>
+                    </tr>
 
-                        <tr>
-                            <th>Tactic</th>
-                            <th>Technique</th>
-                        </tr>
+                    <tr>
+                        <td>Active Scanning</td>
+                        <td>T1595</td>
+                        <td>
+                            Nmap was used to actively identify systems,
+                            ports, and services.
+                        </td>
+                    </tr>
 
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-
-                            <td>
-                                Reconnaissance
-                            </td>
-
-                            <td>
-                                Active Scanning — T1595
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>
-                                Discovery
-                            </td>
-
-                            <td>
-                                Network Service Discovery — T1046
-                            </td>
-
-                        </tr>
-
-                    </tbody>
+                    <tr>
+                        <td>Network Service Scanning</td>
+                        <td>T1046</td>
+                        <td>
+                            Network services were enumerated on the
+                            Metasploitable target.
+                        </td>
+                    </tr>
 
                 </table>
 
@@ -1124,70 +743,40 @@
         </section>
 
 
-        <!-- =================================================
-             Technical Documentation
-             ================================================= -->
-
+        <!-- Technical Documentation -->
         <section class="content-section">
 
-            <div class="result-card">
+            <h2>Technical Documentation</h2>
 
-                <span class="lab-status">
-                    TECHNICAL DOCUMENTATION
-                </span>
+            <p>
+                The complete technical documentation contains the full command
+                sequence, detailed scan results, additional screenshots,
+                troubleshooting notes, analysis, and evidence.
+            </p>
 
-                <h2>
-                    Want the Technical Details?
-                </h2>
-
-                <p>
-                    The GitHub repository contains the complete technical
-                    documentation for this lab, including Nmap commands,
-                    scan methodology, detailed findings, troubleshooting,
-                    complete scan output, and supporting evidence.
-                </p>
-
-                <a
-                    href="https://github.com/kalantz/kalantz.github.io/tree/main/cybersecurity/lab-02-nmap"
-                    class="btn"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View Full Technical Documentation on GitHub →
-                </a>
-
-            </div>
+            <a class="btn"
+               href="https://github.com/kalantz/kalantz.github.io/tree/main/cybersecurity/lab-02-nmap"
+               target="_blank"
+               rel="noopener noreferrer">
+                View Full Lab 02 Documentation on GitHub
+            </a>
 
         </section>
 
 
-        <!-- =================================================
-             Lab Navigation
-             ================================================= -->
-
+        <!-- Navigation -->
         <section class="content-section">
 
-            <div class="lab-group">
+            <div class="lab-navigation">
 
-                <span class="lab-status">
-                    LAB COMPLETE
-                </span>
+                <a class="btn"
+                   href="../lab-01-build/index.html">
+                    ← Lab 01
+                </a>
 
-                <h2>
-                    Next: Lab 03 — Network Traffic Analysis
-                </h2>
-
-                <p>
-                    Analyzing captured network traffic with Wireshark to
-                    identify protocols, connections, and potentially
-                    suspicious activity.
-                </p>
-
-                <a
-                    href="../lab-03-wireshark/index.html"
-                    class="btn"
-                >
-                    View Lab 03 →
+                <a class="btn"
+                   href="../lab-03-wireshark/index.html">
+                    Lab 03 — Network Traffic Analysis →
                 </a>
 
             </div>
@@ -1197,50 +786,34 @@
     </main>
 
 
-    <!-- =====================================================
-         Footer
-         ===================================================== -->
-
+    <!-- Footer -->
     <footer class="footer">
 
         <p>
             © 2026 Kypton Lantz
         </p>
 
+        <p>
+            Cybersecurity Home Lab
+        </p>
+
     </footer>
 
 
-    <!-- =====================================================
-         Evidence Image Layout
-         ===================================================== -->
-
+    <!-- Evidence Gallery Layout -->
     <script>
-
         document.addEventListener("DOMContentLoaded", () => {
 
             const evidenceImages =
                 document.querySelectorAll(".evidence-card img");
 
-
             evidenceImages.forEach((img) => {
 
                 const classifyImage = () => {
 
-                    /*
-                     * Determine the image's actual aspect ratio
-                     * using its intrinsic dimensions.
-                     */
                     const aspectRatio =
                         img.naturalWidth / img.naturalHeight;
 
-
-                    /*
-                     * Wide screenshots get the entire row.
-                     *
-                     * Screenshots that are less than 1.5 times
-                     * wider than they are tall remain in the
-                     * two-column grid.
-                     */
                     if (aspectRatio >= 1.5) {
 
                         const card =
@@ -1254,22 +827,12 @@
 
                 };
 
-
-                /*
-                 * Classify images that have already loaded.
-                 */
-                if (
-                    img.complete &&
-                    img.naturalWidth > 0
-                ) {
+                if (img.complete && img.naturalWidth > 0) {
 
                     classifyImage();
 
                 } else {
 
-                    /*
-                     * Otherwise wait until the image finishes loading.
-                     */
                     img.addEventListener(
                         "load",
                         classifyImage,
@@ -1281,9 +844,7 @@
             });
 
         });
-
     </script>
 
 </body>
-
 </html>
