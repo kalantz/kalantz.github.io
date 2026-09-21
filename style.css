@@ -462,14 +462,16 @@ footer {
 
 /* Evidence gallery */
 .evidence-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 1.5rem;
-    align-items: start;
+    align-items: flex-start;
     margin-top: 2rem;
 }
 
 .evidence-card {
+    flex: 1 1 100%;
+    min-width: 0;
     margin: 0;
     padding: 1rem;
     border: 1px solid var(--border-color);
@@ -624,7 +626,6 @@ footer {
     width: 100%;
     height: auto;
     max-width: 100%;
-    object-fit: contain;
     border-radius: 6px;
 }
 
@@ -645,4 +646,20 @@ footer {
 .content-narrow code {
     font-family: "Courier New", monospace;
     font-size: 0.9em;
+}
+
+/*
+ * Narrow evidence items can share a row.
+ * Wide screenshots remain full-width.
+ */
+.evidence-card.narrow {
+    flex: 0 1 calc(50% - 0.75rem);
+}
+
+/* Stack everything on smaller screens */
+@media (max-width: 700px) {
+    .evidence-card,
+    .evidence-card.narrow {
+        flex: 1 1 100%;
+    }
 }
