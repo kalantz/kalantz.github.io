@@ -607,3 +607,36 @@ footer {
     }
 
 }
+
+/* Lab images */
+
+.lab-image {
+    max-width: 1000px;
+    margin: 2.5rem auto 0;
+    text-align: center;
+}
+
+.lab-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.image-caption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.evidence-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.evidence-card code,
+.content-narrow code {
+    font-family: "Courier New", monospace;
+    font-size: 0.9em;
+}
