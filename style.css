@@ -460,20 +460,21 @@ footer {
 }
 
 
-/* Evidence */
-
+/* Evidence gallery */
 .evidence-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
+    align-items: start;
+    margin-top: 2rem;
 }
 
 .evidence-card {
-    overflow: hidden;
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--card-background);
 }
 
 .evidence-card h3,
@@ -616,17 +617,22 @@ footer {
     text-align: center;
 }
 
-.lab-image img {
+
+.evidence-card img,
+.lab-image {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 10px;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 6px;
 }
 
 .image-caption {
-    margin-top: 0.75rem;
-    font-size: 0.85rem;
-    opacity: 0.7;
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+    color: var(--muted-text);
+    text-align: center;
 }
 
 .evidence-card img {
