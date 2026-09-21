@@ -1,48 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cybersecurity Home Lab - Lab 1: Building the Environment">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Cybersecurity Home Lab - Lab 1: Building the Environment"
+    >
+
     <title>Lab 01 | Building the Environment | Kypton Lantz</title>
+
     <link rel="stylesheet" href="../../style.css">
 </head>
 
 <body>
 
-    <!-- Navigation -->
+    <!-- =====================================================
+         Navigation
+         ===================================================== -->
+
     <nav class="navbar">
+
         <div class="nav-container">
-            <a href="../../index.html" class="logo">KL</a>
+
+            <a href="../../index.html" class="logo">
+                KL
+            </a>
 
             <div class="nav-links">
-                <a href="../../index.html">Home</a>
-                <a href="../../cybersecurity.html">Cybersecurity</a>
+                <a href="../../index.html">
+                    Home
+                </a>
+
+                <a href="../../cybersecurity.html">
+                    Cybersecurity
+                </a>
             </div>
+
         </div>
+
     </nav>
 
 
-    <!-- Hero -->
-    <header class="hero">
-        <div class="hero-content">
-            <span class="lab-status">LAB 01 • COMPLETED</span>
+    <!-- =====================================================
+         Hero
+         ===================================================== -->
 
-            <h1>Building the Environment</h1>
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <span class="lab-status">
+                LAB 01 • COMPLETED
+            </span>
+
+            <h1>
+                Building the Environment
+            </h1>
 
             <p class="hero-subtitle">
                 Designing and deploying an isolated virtual cybersecurity
                 laboratory for offensive and defensive security testing.
             </p>
+
         </div>
+
     </header>
 
 
     <main class="content-narrow">
 
-        <!-- Overview -->
+
+        <!-- =================================================
+             Overview
+             ================================================= -->
+
         <section class="content-section">
-            <h2>Overview</h2>
+
+            <h2>
+                Overview
+            </h2>
 
             <p>
                 This lab established the foundation for my cybersecurity home
@@ -58,125 +101,272 @@
                 The environment is isolated from the primary network using a
                 VirtualBox Host-Only network.
             </p>
+
         </section>
 
 
-        <!-- Objectives -->
+        <!-- =================================================
+             Objectives
+             ================================================= -->
+
         <section class="content-section">
-            <h2>Objectives</h2>
+
+            <h2>
+                Objectives
+            </h2>
 
             <ul>
-                <li>Build a reproducible cybersecurity testing environment.</li>
-                <li>Configure an isolated virtual network.</li>
-                <li>Deploy and administer multiple virtual machines.</li>
-                <li>Establish communication between Linux and Windows systems.</li>
-                <li>Create a foundation for future security labs.</li>
-                <li>Document the environment and validate its operation.</li>
+
+                <li>
+                    Build a reproducible cybersecurity testing environment.
+                </li>
+
+                <li>
+                    Configure an isolated virtual network.
+                </li>
+
+                <li>
+                    Deploy and administer multiple virtual machines.
+                </li>
+
+                <li>
+                    Establish communication between Linux and Windows systems.
+                </li>
+
+                <li>
+                    Create a foundation for future security labs.
+                </li>
+
+                <li>
+                    Document the environment and validate its operation.
+                </li>
+
             </ul>
+
         </section>
 
 
-        <!-- Environment -->
+        <!-- =================================================
+             Lab Environment
+             ================================================= -->
+
         <section class="content-section">
-            <h2>Lab Environment</h2>
+
+            <h2>
+                Lab Environment
+            </h2>
 
             <div class="result-grid">
 
                 <div class="result-card">
-                    <h3>Host System</h3>
+
+                    <h3>
+                        Host System
+                    </h3>
+
                     <p>
                         Windows workstation running Oracle VirtualBox with
                         an AMD Ryzen 7 8700F processor and 32 GB of memory.
                     </p>
+
                 </div>
 
+
                 <div class="result-card">
-                    <h3>Network</h3>
+
+                    <h3>
+                        Network
+                    </h3>
+
                     <p>
                         Isolated VirtualBox Host-Only network using the
                         <code>192.168.56.0/24</code> address space.
                     </p>
+
                 </div>
 
+
                 <div class="result-card">
-                    <h3>Security Workstation</h3>
+
+                    <h3>
+                        Security Workstation
+                    </h3>
+
                     <p>
                         Kali Linux used as the primary security testing and
                         administration workstation.
                     </p>
+
                 </div>
 
+
                 <div class="result-card">
-                    <h3>Target Systems</h3>
+
+                    <h3>
+                        Target Systems
+                    </h3>
+
                     <p>
                         Windows, Ubuntu, and Metasploitable systems used to
                         simulate enterprise and vulnerable environments.
                     </p>
+
                 </div>
 
             </div>
+
         </section>
 
 
-        <!-- Virtual Machines -->
+        <!-- =================================================
+             Virtual Machines
+             ================================================= -->
+
         <section class="content-section">
-            <h2>Virtual Machines</h2>
+
+            <h2>
+                Virtual Machines
+            </h2>
 
             <div class="table-wrapper">
+
                 <table class="lab-table">
+
                     <thead>
+
                         <tr>
                             <th>System</th>
                             <th>Operating System</th>
                             <th>Purpose</th>
                             <th>IP Address</th>
                         </tr>
+
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>KALI-ATTACK</td>
-                            <td>Kali GNU/Linux 2026.2</td>
-                            <td>Security testing workstation</td>
-                            <td>192.168.56.40</td>
-                        </tr>
 
                         <tr>
-                            <td>WIN2022-SRV</td>
-                            <td>Windows Server 2022</td>
-                            <td>Enterprise server platform</td>
-                            <td>192.168.56.10</td>
+
+                            <td>
+                                KALI-ATTACK
+                            </td>
+
+                            <td>
+                                Kali GNU/Linux 2026.2
+                            </td>
+
+                            <td>
+                                Security testing workstation
+                            </td>
+
+                            <td>
+                                192.168.56.40
+                            </td>
+
                         </tr>
 
-                        <tr>
-                            <td>WIN11-CLIENT</td>
-                            <td>Windows 11 Pro</td>
-                            <td>Endpoint simulation</td>
-                            <td>192.168.56.20</td>
-                        </tr>
 
                         <tr>
-                            <td>UBUNTU-SRV</td>
-                            <td>Ubuntu Server 25.04</td>
-                            <td>Linux server environment</td>
-                            <td>192.168.56.30</td>
+
+                            <td>
+                                WIN2022-SRV
+                            </td>
+
+                            <td>
+                                Windows Server 2022
+                            </td>
+
+                            <td>
+                                Enterprise server platform
+                            </td>
+
+                            <td>
+                                192.168.56.10
+                            </td>
+
                         </tr>
 
+
                         <tr>
-                            <td>METASPLOITABLE2</td>
-                            <td>Ubuntu-based vulnerable system</td>
-                            <td>Controlled security testing target</td>
-                            <td>192.168.56.50</td>
+
+                            <td>
+                                WIN11-CLIENT
+                            </td>
+
+                            <td>
+                                Windows 11 Pro
+                            </td>
+
+                            <td>
+                                Endpoint simulation
+                            </td>
+
+                            <td>
+                                192.168.56.20
+                            </td>
+
                         </tr>
+
+
+                        <tr>
+
+                            <td>
+                                UBUNTU-SRV
+                            </td>
+
+                            <td>
+                                Ubuntu Server 25.04
+                            </td>
+
+                            <td>
+                                Linux server environment
+                            </td>
+
+                            <td>
+                                192.168.56.30
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                METASPLOITABLE2
+                            </td>
+
+                            <td>
+                                Ubuntu-based vulnerable system
+                            </td>
+
+                            <td>
+                                Controlled security testing target
+                            </td>
+
+                            <td>
+                                192.168.56.50
+                            </td>
+
+                        </tr>
+
                     </tbody>
+
                 </table>
+
             </div>
+
         </section>
 
 
-        <!-- Network Configuration -->
+        <!-- =================================================
+             Network Configuration
+             ================================================= -->
+
         <section class="content-section">
-            <h2>Network Configuration</h2>
+
+            <h2>
+                Network Configuration
+            </h2>
 
             <p>
                 The laboratory uses two types of virtual network connectivity.
@@ -185,34 +375,54 @@
                 isolated communication between laboratory systems.
             </p>
 
+
             <div class="result-grid">
 
                 <div class="result-card">
-                    <h3>NAT</h3>
+
+                    <h3>
+                        NAT
+                    </h3>
+
                     <p>
                         Provides controlled internet connectivity for systems
                         that require updates or package downloads.
                     </p>
+
                 </div>
 
+
                 <div class="result-card">
-                    <h3>Host-Only</h3>
+
+                    <h3>
+                        Host-Only
+                    </h3>
+
                     <p>
                         Provides isolated communication between laboratory
                         systems without exposing testing traffic to the
                         external network.
                     </p>
+
                 </div>
 
             </div>
+
         </section>
 
 
-        <!-- Implementation -->
+        <!-- =================================================
+             Implementation
+             ================================================= -->
+
         <section class="content-section">
-            <h2>Implementation</h2>
+
+            <h2>
+                Implementation
+            </h2>
 
             <ol>
+
                 <li>
                     Deployed five virtual machines in Oracle VirtualBox.
                 </li>
@@ -234,11 +444,16 @@
                     Verified network interfaces, routing, and connectivity
                     from the Kali Linux security workstation.
                 </li>
+
             </ol>
+
+
+            <!-- Evidence -->
 
             <div class="evidence-grid">
 
                 <div class="evidence-card">
+
                     <img
                         src="screenshots/0-virtualbox-overview.png"
                         alt="VirtualBox overview showing the cybersecurity laboratory virtual machines"
@@ -248,9 +463,12 @@
                     <p class="image-caption">
                         VirtualBox laboratory environment
                     </p>
+
                 </div>
 
+
                 <div class="evidence-card">
+
                     <img
                         src="screenshots/1-host-only-network.png"
                         alt="VirtualBox Host-Only network configuration"
@@ -260,62 +478,126 @@
                     <p class="image-caption">
                         Isolated Host-Only network configuration
                     </p>
+
                 </div>
 
             </div>
+
         </section>
 
 
-        <!-- Validation -->
+        <!-- =================================================
+             Validation
+             ================================================= -->
+
         <section class="content-section">
-            <h2>Validation</h2>
+
+            <h2>
+                Validation
+            </h2>
 
             <p>
                 Connectivity was validated from Kali Linux by testing
                 communication with each laboratory target.
             </p>
 
+
             <div class="table-wrapper">
+
                 <table class="lab-table">
+
                     <thead>
+
                         <tr>
                             <th>Target</th>
                             <th>Address</th>
                             <th>Result</th>
                         </tr>
+
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>Ubuntu Server</td>
-                            <td>192.168.56.30</td>
-                            <td>Successful</td>
-                        </tr>
 
                         <tr>
-                            <td>Windows Server 2022</td>
-                            <td>192.168.56.10</td>
-                            <td>Successful</td>
+
+                            <td>
+                                Ubuntu Server
+                            </td>
+
+                            <td>
+                                192.168.56.30
+                            </td>
+
+                            <td>
+                                Successful
+                            </td>
+
                         </tr>
 
-                        <tr>
-                            <td>Windows 11</td>
-                            <td>192.168.56.20</td>
-                            <td>Successful</td>
-                        </tr>
 
                         <tr>
-                            <td>Metasploitable2</td>
-                            <td>192.168.56.50</td>
-                            <td>Successful</td>
+
+                            <td>
+                                Windows Server 2022
+                            </td>
+
+                            <td>
+                                192.168.56.10
+                            </td>
+
+                            <td>
+                                Successful
+                            </td>
+
                         </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Windows 11
+                            </td>
+
+                            <td>
+                                192.168.56.20
+                            </td>
+
+                            <td>
+                                Successful
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                Metasploitable2
+                            </td>
+
+                            <td>
+                                192.168.56.50
+                            </td>
+
+                            <td>
+                                Successful
+                            </td>
+
+                        </tr>
+
                     </tbody>
+
                 </table>
+
             </div>
+
+
+            <!-- Validation Evidence -->
 
             <div class="evidence-grid">
 
                 <div class="evidence-card">
+
                     <img
                         src="screenshots/7-kali-to-ubuntu-ping.png"
                         alt="Successful ping from Kali Linux to Ubuntu Server"
@@ -325,9 +607,12 @@
                     <p class="image-caption">
                         Kali → Ubuntu Server
                     </p>
+
                 </div>
 
+
                 <div class="evidence-card">
+
                     <img
                         src="screenshots/8-kali-to-win2022-ping.png"
                         alt="Successful ping from Kali Linux to Windows Server 2022"
@@ -337,9 +622,12 @@
                     <p class="image-caption">
                         Kali → Windows Server 2022
                     </p>
+
                 </div>
 
+
                 <div class="evidence-card">
+
                     <img
                         src="screenshots/9-kali-to-win11-ping.png"
                         alt="Successful ping from Kali Linux to Windows 11"
@@ -349,9 +637,12 @@
                     <p class="image-caption">
                         Kali → Windows 11
                     </p>
+
                 </div>
 
+
                 <div class="evidence-card">
+
                     <img
                         src="screenshots/10-kali-to-metasploitable-ping.png"
                         alt="Successful ping from Kali Linux to Metasploitable2"
@@ -361,20 +652,32 @@
                     <p class="image-caption">
                         Kali → Metasploitable2
                     </p>
+
                 </div>
 
             </div>
+
         </section>
 
 
-        <!-- Troubleshooting -->
+        <!-- =================================================
+             Troubleshooting
+             ================================================= -->
+
         <section class="content-section">
-            <h2>Troubleshooting</h2>
+
+            <h2>
+                Troubleshooting
+            </h2>
 
             <div class="result-grid">
 
+
                 <div class="result-card">
-                    <h3>Kali Network Interface</h3>
+
+                    <h3>
+                        Kali Network Interface
+                    </h3>
 
                     <p>
                         The Kali Host-Only interface was initially misconfigured.
@@ -383,13 +686,19 @@
                     </p>
 
                     <p>
-                        <strong>Lesson:</strong> Verify interfaces and routing
-                        before applying network configuration changes.
+                        <strong>Lesson:</strong>
+                        Verify interfaces and routing before applying network
+                        configuration changes.
                     </p>
+
                 </div>
 
+
                 <div class="result-card">
-                    <h3>Windows Adapter Status</h3>
+
+                    <h3>
+                        Windows Adapter Status
+                    </h3>
 
                     <p>
                         A Windows Host-Only adapter appeared disconnected in
@@ -398,14 +707,20 @@
                     </p>
 
                     <p>
-                        <strong>Lesson:</strong> Validate actual functionality
-                        with diagnostic tools rather than relying exclusively
-                        on GUI status indicators.
+                        <strong>Lesson:</strong>
+                        Validate actual functionality with diagnostic tools
+                        rather than relying exclusively on GUI status
+                        indicators.
                     </p>
+
                 </div>
 
+
                 <div class="result-card">
-                    <h3>Windows 11 ICMP</h3>
+
+                    <h3>
+                        Windows 11 ICMP
+                    </h3>
 
                     <p>
                         Windows 11 initially blocked ICMP traffic. The issue
@@ -415,35 +730,75 @@
                     </p>
 
                     <p>
-                        <strong>Lesson:</strong> Endpoint firewall policies can
-                        directly affect security testing and network
-                        troubleshooting.
+                        <strong>Lesson:</strong>
+                        Endpoint firewall policies can directly affect security
+                        testing and network troubleshooting.
                     </p>
+
                 </div>
 
+
             </div>
+
         </section>
 
 
-        <!-- Lessons Learned -->
+        <!-- =================================================
+             Lessons Learned
+             ================================================= -->
+
         <section class="content-section">
-            <h2>Lessons Learned</h2>
+
+            <h2>
+                Lessons Learned
+            </h2>
 
             <ul>
-                <li>Virtual network configuration and adapter mapping.</li>
-                <li>Static IP addressing and basic network validation.</li>
-                <li>Evidence-driven troubleshooting.</li>
-                <li>How endpoint firewalls affect network testing.</li>
-                <li>Using VM snapshots to maintain reproducible lab states.</li>
-                <li>Documenting technical work for future reference.</li>
+
+                <li>
+                    Virtual network configuration and adapter mapping.
+                </li>
+
+                <li>
+                    Static IP addressing and basic network validation.
+                </li>
+
+                <li>
+                    Evidence-driven troubleshooting.
+                </li>
+
+                <li>
+                    How endpoint firewalls affect network testing.
+                </li>
+
+                <li>
+                    Using VM snapshots to maintain reproducible lab states.
+                </li>
+
+                <li>
+                    Documenting technical work for future reference.
+                </li>
+
             </ul>
+
         </section>
 
 
-        <!-- Technical Documentation -->
+        <!-- =================================================
+             Technical Documentation
+             ================================================= -->
+
         <section class="content-section">
+
             <div class="result-card">
-                <h2>Want the Technical Details?</h2>
+
+                <span class="lab-status">
+                    TECHNICAL DOCUMENTATION
+                </span>
+
+                <h2>
+                    Want the Technical Details?
+                </h2>
 
                 <p>
                     The GitHub repository contains the complete technical
@@ -460,16 +815,27 @@
                 >
                     View Full Technical Documentation on GitHub →
                 </a>
+
             </div>
+
         </section>
 
 
-        <!-- Next Lab -->
-        <section class="content-section">
-            <div class="lab-group">
-                <span class="lab-status">NEXT</span>
+        <!-- =================================================
+             Next Lab
+             ================================================= -->
 
-                <h2>Lab 02: Network Reconnaissance</h2>
+        <section class="content-section">
+
+            <div class="lab-group">
+
+                <span class="lab-status">
+                    NEXT
+                </span>
+
+                <h2>
+                    Lab 02: Network Reconnaissance
+                </h2>
 
                 <p>
                     Using Nmap to discover hosts, enumerate services, and
@@ -477,21 +843,104 @@
                     network.
                 </p>
 
-                <a href="../lab-02-nmap/index.html" class="btn">
+                <a
+                    href="../lab-02-nmap/index.html"
+                    class="btn"
+                >
                     View Lab 02 →
                 </a>
+
             </div>
+
         </section>
 
     </main>
 
 
-    <!-- Footer -->
+    <!-- =====================================================
+         Footer
+         ===================================================== -->
+
     <footer class="footer">
+
         <p>
             © 2026 Kypton Lantz
         </p>
+
     </footer>
 
+
+    <!-- =====================================================
+         Evidence Image Layout
+         ===================================================== -->
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const evidenceImages =
+                document.querySelectorAll(".evidence-card img");
+
+
+            evidenceImages.forEach((img) => {
+
+                const classifyImage = () => {
+
+                    /*
+                     * Determine the image's actual aspect ratio
+                     * using its intrinsic dimensions.
+                     */
+                    const aspectRatio =
+                        img.naturalWidth / img.naturalHeight;
+
+
+                    /*
+                     * Wide screenshots get the entire row.
+                     *
+                     * A ratio of 1.5 means the image is at least
+                     * 50% wider than it is tall.
+                     *
+                     * Narrower/portrait screenshots remain in
+                     * the two-column grid.
+                     */
+                    if (aspectRatio >= 1.5) {
+
+                        const card =
+                            img.closest(".evidence-card");
+
+                        if (card) {
+                            card.classList.add("wide");
+                        }
+
+                    }
+
+                };
+
+
+                /*
+                 * If the image has already loaded, classify it
+                 * immediately. Otherwise wait for the image to load.
+                 */
+                if (img.complete && img.naturalWidth > 0) {
+
+                    classifyImage();
+
+                } else {
+
+                    img.addEventListener(
+                        "load",
+                        classifyImage,
+                        { once: true }
+                    );
+
+                }
+
+            });
+
+        });
+
+    </script>
+
 </body>
+
 </html>
