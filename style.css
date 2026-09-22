@@ -336,66 +336,40 @@ code {
    Evidence Gallery
    ========================================================= */
 
+/* Evidence Gallery */
 .evidence-grid {
     display: grid;
-
-    /*
-     * Start with two columns so narrow/portrait screenshots
-     * can share a row.
-     */
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
     gap: 1.5rem;
-
-    margin-top: 2rem;
-
     align-items: start;
 }
 
 .evidence-card {
-    min-width: 0;
-    margin: 0;
-    padding: 1rem;
-
+    background: var(--surface);
     border: 1px solid var(--border-color);
     border-radius: 10px;
-
-    background: var(--surface);
+    padding: 1rem;
+    overflow: hidden;
 }
 
-/*
- * Wide screenshots occupy the entire available width.
- * JavaScript adds this class based on the image's
- * intrinsic aspect ratio.
- */
 .evidence-card.wide {
     grid-column: 1 / -1;
 }
 
-.evidence-card img,
 .lab-image {
     display: block;
-
     width: 100%;
     height: auto;
     max-width: 100%;
-
-    border-radius: 6px;
-
-    /*
-     * Never crop screenshots.
-     */
     object-fit: contain;
+    border-radius: 6px;
 }
 
 .image-caption {
-    margin: 0.75rem 0 0;
-
+    margin: 0.9rem 0 0;
     color: var(--muted-text);
-
     font-size: 0.9rem;
-    line-height: 1.4;
-    text-align: center;
+    line-height: 1.5;
 }
 
 
