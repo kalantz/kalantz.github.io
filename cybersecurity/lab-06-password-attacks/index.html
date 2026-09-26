@@ -22,21 +22,34 @@
         <div class="hero-content">
             <p class="eyebrow">CYBERSECURITY LAB 06</p>
             <h1>Password Attacks</h1>
-            <p class="hero-subtitle">Examining credential security and controlled password attack techniques in an authorized lab environment.</p>
+            <p class="hero-subtitle">Comparing controlled online password auditing with offline password-hash cracking.</p>
         </div>
     </header>
     <main class="content-narrow">
         <section class="content-section">
             <h2>Lab Overview</h2>
-            <p>This lab focuses on how password choices, credential storage, and authentication controls affect account security. Exercises are conducted only against designated lab systems.</p>
+            <p>The lab evaluated Ncrack and Medusa for online authentication testing and John the Ripper for offline hash cracking, using designated systems in the isolated home lab. It also documented compatibility issues encountered when testing legacy authentication services.</p>
         </section>
         <section class="content-section">
             <h2>Areas of Focus</h2>
             <ul>
-                <li>Password strength and common credential risks</li>
-                <li>Controlled password auditing and authentication testing</li>
-                <li>Defensive practices for protecting credentials and accounts</li>
+                <li>Online SSH password auditing with Ncrack</li>
+                <li>Offline password-hash analysis with John the Ripper</li>
+                <li>Tool compatibility and verification of recovered credentials</li>
             </ul>
+        </section>
+        <section class="content-section">
+            <h2>Selected Evidence</h2>
+            <div class="evidence-grid">
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/06-Password-Attacks/main/screenshots/ncrack-ssh-password-attack.png" alt="Ncrack SSH password-auditing results from the isolated lab" loading="lazy">
+                    <figcaption>Controlled online password-auditing results.</figcaption>
+                </figure>
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/06-Password-Attacks/main/screenshots/lab6-hash.png" alt="Password hash prepared for offline analysis" loading="lazy">
+                    <figcaption>Evidence used in the offline hash-cracking exercise.</figcaption>
+                </figure>
+            </div>
         </section>
         <section class="content-section">
             <h2>Lab Repository</h2>

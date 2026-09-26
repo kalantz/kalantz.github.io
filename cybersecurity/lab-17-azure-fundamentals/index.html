@@ -22,21 +22,34 @@
         <div class="hero-content">
             <p class="eyebrow">CYBERSECURITY LAB 17</p>
             <h1>Azure Fundamentals</h1>
-            <p class="hero-subtitle">Developing foundational understanding of Microsoft Azure services, identity, and cloud security.</p>
+            <p class="hero-subtitle">Building a security-focused Azure foundation for cloud monitoring and Sentinel.</p>
         </div>
     </header>
     <main class="content-narrow">
         <section class="content-section">
             <h2>Lab Overview</h2>
-            <p>This lab covers core Azure concepts and their relationship to cloud security, including the shared responsibility model and the configuration of cloud resources.</p>
+            <p>This lab established a security-focused Azure environment using network segmentation, storage controls, Key Vault, managed identities, RBAC, and diagnostic logging. Planned Ubuntu VM provisioning was blocked by the subscription's allowed-SKU policy, so no live VM workload was added.</p>
         </section>
         <section class="content-section">
             <h2>Areas of Focus</h2>
             <ul>
-                <li>Azure services and cloud resource organization</li>
-                <li>Identity, access, and security fundamentals</li>
-                <li>Cloud governance and shared responsibility</li>
+                <li>Virtual networks, subnet association, and network security groups</li>
+                <li>Storage access, Key Vault, managed identities, and RBAC</li>
+                <li>Activity and diagnostic logging for later Sentinel investigation</li>
             </ul>
+        </section>
+        <section class="content-section">
+            <h2>Selected Evidence</h2>
+            <div class="evidence-grid">
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/17-Azure-Fundamentals/main/screenshots/03-Azure-NSG-subnet-association.png" alt="Azure network security group associated with the lab subnet" loading="lazy">
+                    <figcaption>Network security group association for the Azure subnet.</figcaption>
+                </figure>
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/17-Azure-Fundamentals/main/screenshots/14-Azure-KeyVault-AuditLogs.png" alt="Azure Key Vault audit logs collected for the cloud lab" loading="lazy">
+                    <figcaption>Key Vault audit-log evidence from the configured environment.</figcaption>
+                </figure>
+            </div>
         </section>
         <section class="content-section">
             <h2>Lab Repository</h2>

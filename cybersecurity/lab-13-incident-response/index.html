@@ -22,21 +22,34 @@
         <div class="hero-content">
             <p class="eyebrow">CYBERSECURITY LAB 13</p>
             <h1>Incident Response</h1>
-            <p class="hero-subtitle">Applying a structured approach to security incident investigation and response documentation.</p>
+            <p class="hero-subtitle">Investigating simulated network activity through triage, packet evidence, and corroborated findings.</p>
         </div>
     </header>
     <main class="content-narrow">
         <section class="content-section">
             <h2>Lab Overview</h2>
-            <p>This lab covers the investigation of simulated security incidents, from reviewing available evidence to documenting findings and response decisions.</p>
+            <p>In the isolated home lab, a simulated Kali host generated reconnaissance and credential-based activity against Metasploitable 2. Security Onion telemetry and packet captures were used to determine which actions occurred, which succeeded, and what the evidence could support.</p>
         </section>
         <section class="content-section">
             <h2>Areas of Focus</h2>
             <ul>
-                <li>Incident triage and evidence review</li>
-                <li>Timeline development and activity analysis</li>
-                <li>Response documentation and lessons learned</li>
+                <li>Initial triage using Security Onion alerts and network context</li>
+                <li>Packet-capture review to corroborate reported activity</li>
+                <li>Separating confirmed outcomes from unsuccessful attempts</li>
             </ul>
+        </section>
+        <section class="content-section">
+            <h2>Selected Evidence</h2>
+            <div class="evidence-grid">
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/13-Incident-Response/main/evidence/04-incident-initial-triage.png" alt="Security Onion initial-triage evidence from the incident investigation" loading="lazy">
+                    <figcaption>Initial triage of the simulated incident activity.</figcaption>
+                </figure>
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/13-Incident-Response/main/evidence/07-FTP-successful-auth.png" alt="Evidence of a successful FTP authentication during the controlled investigation" loading="lazy">
+                    <figcaption>Corroborating a successful FTP authentication in the lab.</figcaption>
+                </figure>
+            </div>
         </section>
         <section class="content-section">
             <h2>Lab Repository</h2>

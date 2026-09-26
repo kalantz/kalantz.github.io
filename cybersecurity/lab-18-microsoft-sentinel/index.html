@@ -22,21 +22,34 @@
         <div class="hero-content">
             <p class="eyebrow">CYBERSECURITY LAB 18</p>
             <h1>Microsoft Sentinel</h1>
-            <p class="hero-subtitle">Exploring cloud-native SIEM monitoring, analytics, and security investigation workflows.</p>
+            <p class="hero-subtitle">Querying Azure activity and storage telemetry with Microsoft Sentinel and KQL.</p>
         </div>
     </header>
     <main class="content-narrow">
         <section class="content-section">
             <h2>Lab Overview</h2>
-            <p>This lab introduces Microsoft Sentinel as a cloud-native SIEM for collecting security data, analyzing activity, and supporting incident investigations.</p>
+            <p>Microsoft Sentinel was enabled on the existing Lab 17 Log Analytics workspace. Azure Activity Log and storage telemetry were queried with KQL to establish baselines and investigate controlled activity. Defender portal onboarding permissions prevented validating analytics rules, incidents, workbooks, and automation.</p>
         </section>
         <section class="content-section">
             <h2>Areas of Focus</h2>
             <ul>
-                <li>Workspace and data-source fundamentals</li>
-                <li>Security analytics and investigation</li>
-                <li>Detection and incident response workflows</li>
+                <li>Sentinel setup and validation of available data connectors</li>
+                <li>AzureActivity and StorageBlobLogs queries using KQL</li>
+                <li>Documented scope limits where Defender onboarding permissions were unavailable</li>
             </ul>
+        </section>
+        <section class="content-section">
+            <h2>Selected Evidence</h2>
+            <div class="evidence-grid">
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/18-Microsoft-Sentinel/main/screenshots/04-Sentinel-AzureActivity-raw-events.png" alt="Raw Azure Activity events queried in Microsoft Sentinel" loading="lazy">
+                    <figcaption>Azure Activity Log events available for investigation.</figcaption>
+                </figure>
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/18-Microsoft-Sentinel/main/screenshots/13-Sentinel-Storage-detection-query.png" alt="KQL detection query for Azure Storage activity in Sentinel" loading="lazy">
+                    <figcaption>KQL query used to investigate Azure Storage activity.</figcaption>
+                </figure>
+            </div>
         </section>
         <section class="content-section">
             <h2>Lab Repository</h2>

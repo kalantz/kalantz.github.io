@@ -22,21 +22,34 @@
         <div class="hero-content">
             <p class="eyebrow">CYBERSECURITY LAB 16</p>
             <h1>Active Directory Defense</h1>
-            <p class="hero-subtitle">Applying defensive controls and monitoring practices to enterprise directory services.</p>
+            <p class="hero-subtitle">Hardening Active Directory and re-testing selected attack paths in home.lab.</p>
         </div>
     </header>
     <main class="content-narrow">
         <section class="content-section">
             <h2>Lab Overview</h2>
-            <p>This lab focuses on defensive configuration and validation in an Active Directory environment, relating protective measures to directory-service risks.</p>
+            <p>This lab is the defensive counterpart to Lab 15. It applied security controls to the existing <code>home.lab</code> domain, verified configuration from both the domain controller and attacker perspective, and re-tested selected techniques to assess the changes.</p>
         </section>
         <section class="content-section">
             <h2>Areas of Focus</h2>
             <ul>
-                <li>Identity and access security controls</li>
-                <li>Hardening and monitoring directory services</li>
-                <li>Validating defensive changes and reviewing telemetry</li>
+                <li>Password and account-lockout policy hardening</li>
+                <li>Service-account credentials, Kerberos encryption, and delegation scope</li>
+                <li>Re-testing attack paths and reviewing resulting evidence</li>
             </ul>
+        </section>
+        <section class="content-section">
+            <h2>Selected Evidence</h2>
+            <div class="evidence-grid">
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/16-AD-Defense/main/screenshots/06-AD-defense-lockout-policy-hardened.png" alt="Hardened Active Directory account-lockout policy" loading="lazy">
+                    <figcaption>Validated account-lockout policy hardening.</figcaption>
+                </figure>
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/16-AD-Defense/main/screenshots/11-AD-defense-Kerberoast-AES256-result.png" alt="Kerberoasting re-test result after service-account Kerberos hardening" loading="lazy">
+                    <figcaption>Kerberos attack re-test after service-account hardening.</figcaption>
+                </figure>
+            </div>
         </section>
         <section class="content-section">
             <h2>Lab Repository</h2>

@@ -22,21 +22,34 @@
         <div class="hero-content">
             <p class="eyebrow">CYBERSECURITY LAB 14</p>
             <h1>Active Directory</h1>
-            <p class="hero-subtitle">Exploring enterprise identity, directory services, and the security of a controlled Active Directory environment.</p>
+            <p class="hero-subtitle">Organizing and validating the existing Windows Server 2022 home.lab directory environment.</p>
         </div>
     </header>
     <main class="content-narrow">
         <section class="content-section">
             <h2>Lab Overview</h2>
-            <p>This lab introduces Active Directory concepts in an isolated environment, providing a foundation for understanding directory-based authentication and administration.</p>
+            <p>This lab examined the existing Windows Server 2022 domain controller for the <code>home.lab</code> domain, then organized and extended the environment as a foundation for later attack and defense exercises. It did not create a second domain.</p>
         </section>
         <section class="content-section">
             <h2>Areas of Focus</h2>
             <ul>
-                <li>Directory structure, users, groups, and computers</li>
-                <li>Authentication and centralized identity</li>
-                <li>Security configuration and visibility</li>
+                <li>Domain-controller, DNS, and Active Directory validation</li>
+                <li>Organizational-unit, user, and group organization</li>
+                <li>OU deletion protection and domain security settings</li>
             </ul>
+        </section>
+        <section class="content-section">
+            <h2>Selected Evidence</h2>
+            <div class="evidence-grid">
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/14-Active-Directory/main/screenshots/08-AD-OU-structure.png" alt="Organizational-unit structure created for the home.lab domain" loading="lazy">
+                    <figcaption>Organizational-unit structure for the lab domain.</figcaption>
+                </figure>
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/14-Active-Directory/main/screenshots/13-AD-OU-deletion-protection.png" alt="Active Directory organizational-unit deletion protection setting" loading="lazy">
+                    <figcaption>Validation of OU deletion protection.</figcaption>
+                </figure>
+            </div>
         </section>
         <section class="content-section">
             <h2>Lab Repository</h2>

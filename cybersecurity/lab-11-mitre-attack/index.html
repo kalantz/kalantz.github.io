@@ -22,21 +22,34 @@
         <div class="hero-content">
             <p class="eyebrow">CYBERSECURITY LAB 11</p>
             <h1>MITRE ATT&CK Mapping</h1>
-            <p class="hero-subtitle">Connecting observed behaviors and security telemetry to adversary tactics and techniques.</p>
+            <p class="hero-subtitle">Mapping observed lab activity to MITRE ATT&amp;CK with evidence-based reasoning.</p>
         </div>
     </header>
     <main class="content-narrow">
         <section class="content-section">
             <h2>Lab Overview</h2>
-            <p>This lab uses the MITRE ATT&CK knowledge base to describe and contextualize observed behavior. Structured mapping helps communicate investigative findings and identify defensive visibility.</p>
+            <p>This lab maps activities documented in earlier exercises to MITRE ATT&amp;CK based on collected evidence. It distinguishes observed behavior from inferred intent and attempted actions from confirmed outcomes; a tool name alone is not treated as proof of a technique.</p>
         </section>
         <section class="content-section">
             <h2>Areas of Focus</h2>
             <ul>
-                <li>Adversary tactics and techniques</li>
-                <li>Mapping observations to ATT&CK behavior</li>
-                <li>Using ATT&CK to communicate coverage and gaps</li>
+                <li>Describing behavior rather than simply naming tools</li>
+                <li>Grounding technique mappings in observable evidence</li>
+                <li>Recording uncertainty and differentiating attempts from outcomes</li>
             </ul>
+        </section>
+        <section class="content-section">
+            <h2>Selected Evidence</h2>
+            <div class="evidence-grid">
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/11-MITRE-ATTACK/main/screenshots/03-Nmap-recon.png" alt="Network reconnaissance evidence referenced in the MITRE ATT&amp;CK mapping" loading="lazy">
+                    <figcaption>Observed reconnaissance used to support behavior mapping.</figcaption>
+                </figure>
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/11-MITRE-ATTACK/main/screenshots/05-SOC-Nmap-alerts.png" alt="Security Onion alerts used as evidence when mapping network activity" loading="lazy">
+                    <figcaption>Network detection evidence used to add investigative context.</figcaption>
+                </figure>
+            </div>
         </section>
         <section class="content-section">
             <h2>Lab Repository</h2>

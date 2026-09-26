@@ -22,21 +22,34 @@
         <div class="hero-content">
             <p class="eyebrow">CYBERSECURITY LAB 15</p>
             <h1>Active Directory Attacks</h1>
-            <p class="hero-subtitle">Studying directory-service attack paths and authentication weaknesses in an authorized lab.</p>
+            <p class="hero-subtitle">Evaluating Active Directory attack paths in the isolated home.lab domain.</p>
         </div>
     </header>
     <main class="content-narrow">
         <section class="content-section">
             <h2>Lab Overview</h2>
-            <p>This lab examines common Active Directory attack techniques within a controlled environment, with an emphasis on understanding how weaknesses can be identified and mitigated.</p>
+            <p>Building on the domain established in Lab 14, this exercise simulated common Active Directory attack techniques from an isolated Kali system against the Windows Server 2022 domain controller. Windows authentication events were also reviewed to corroborate selected activity.</p>
         </section>
         <section class="content-section">
             <h2>Areas of Focus</h2>
             <ul>
-                <li>Directory identity and authentication attack surfaces</li>
-                <li>Recognizing misconfigurations and risky relationships</li>
-                <li>Connecting observed techniques to defensive controls</li>
+                <li>SMB and LDAP enumeration and controlled password spraying</li>
+                <li>Kerberos service-principal enumeration and Kerberoasting</li>
+                <li>Offline password recovery and Windows event review</li>
             </ul>
+        </section>
+        <section class="content-section">
+            <h2>Selected Evidence</h2>
+            <div class="evidence-grid">
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/15-AD-Attacks/main/Screenshots/10-AD-Kerberoast-offline-recovery.png" alt="Evidence of offline password recovery from a Kerberos service ticket in the isolated lab" loading="lazy">
+                    <figcaption>Controlled offline recovery exercise using a lab service ticket.</figcaption>
+                </figure>
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/15-AD-Attacks/main/Screenshots/22-AD-windows-network-authentication-timeline.png" alt="Windows network authentication timeline associated with the Active Directory lab" loading="lazy">
+                    <figcaption>Windows authentication events used to review network activity.</figcaption>
+                </figure>
+            </div>
         </section>
         <section class="content-section">
             <h2>Lab Repository</h2>

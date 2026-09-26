@@ -22,21 +22,34 @@
         <div class="hero-content">
             <p class="eyebrow">CYBERSECURITY LAB 08</p>
             <h1>Windows Logging</h1>
-            <p class="hero-subtitle">Building familiarity with Windows security events, audit data, and host-based investigation.</p>
+            <p class="hero-subtitle">Using Windows audit events and PowerShell logs to trace and correlate host activity.</p>
         </div>
     </header>
     <main class="content-narrow">
         <section class="content-section">
             <h2>Lab Overview</h2>
-            <p>This lab examines Windows event logging as a source of security telemetry. The work develops foundational skills for reviewing host activity and identifying events that warrant investigation.</p>
+            <p>On the isolated Windows 11 client, the lab configured and reviewed security and PowerShell logging, then correlated authentication, account-discovery, and process activity. Script Block Logging (Event ID 4104) and process creation auditing (Event ID 4688) provided additional investigation context.</p>
         </section>
         <section class="content-section">
             <h2>Areas of Focus</h2>
             <ul>
-                <li>Windows event channels and security-relevant events</li>
-                <li>Audit settings and event review</li>
-                <li>Using host logs to support security investigations</li>
+                <li>Successful and failed logons and account-related events</li>
+                <li>PowerShell Script Block Logging (Event ID 4104)</li>
+                <li>Process creation auditing (Event ID 4688) and event correlation</li>
             </ul>
+        </section>
+        <section class="content-section">
+            <h2>Selected Evidence</h2>
+            <div class="evidence-grid">
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/08-Windows-Logging/main/screenshots/7-event-correlation.png" alt="Correlated Windows security events from the lab investigation" loading="lazy">
+                    <figcaption>Correlating Windows events to reconstruct host activity.</figcaption>
+                </figure>
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/08-Windows-Logging/main/screenshots/14-script-block-logging-enabled.png" alt="PowerShell Script Block Logging configuration on Windows" loading="lazy">
+                    <figcaption>PowerShell Script Block Logging configuration.</figcaption>
+                </figure>
+            </div>
         </section>
         <section class="content-section">
             <h2>Lab Repository</h2>

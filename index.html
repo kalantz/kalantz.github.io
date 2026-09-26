@@ -29,13 +29,13 @@
 
             <div class="nav-links">
 
-                <a href="#about">About</a>
-
-                <a href="#skills">Skills</a>
-
                 <a href="software-development/index.html">Projects</a>
 
                 <a href="cybersecurity/index.html">Cybersecurity</a>
+
+                <a href="#skills">Skills</a>
+
+                <a href="#about">About</a>
 
                 <a href="#contact">Contact</a>
 
@@ -76,20 +76,11 @@
 
             </div>
 
-            <div class="hero-social-links">
-                <a href="https://github.com/kalantz" target="_blank" rel="noopener noreferrer">
-                    GitHub
-                </a>
-
-                <a href="https://www.linkedin.com/in/kypton-lantz/" target="_blank" rel="noopener noreferrer">
-                    LinkedIn
-                </a>
-            </div>
-
         </div>
 
     </header>
 
+    <main id="main-content">
 
     <!-- Credentials -->
 
@@ -147,38 +138,113 @@
 
     </section>
 
-    <!-- About -->
+    <!-- Software Projects -->
 
-    <section class="section" id="about">
+    <section class="section" id="projects">
 
         <div class="section-heading">
 
             <p class="eyebrow">
-                ABOUT
+                SOFTWARE DEVELOPMENT
             </p>
 
-            <h2>Software engineering grounded in practical problem-solving.</h2>
+            <h2>
+                Selected projects
+            </h2>
+
+            <p>
+                Personal software projects in development, with more detail
+                available on each project page.
+            </p>
 
         </div>
 
 
-        <div class="about-content">
+        <div class="projects-grid">
 
-            <p>
-                My work spans full-stack applications, relational data, and
-                hands-on security labs—connecting software development with a
-                practical understanding of how systems are built and defended.
-            </p>
 
-            <p>
-                I value clear documentation, careful testing, and understanding
-                how systems behave—not just getting them to run.
-            </p>
+            <!-- Horror Movie Database -->
 
+            <article class="project-card">
+
+                <figure class="project-image-placeholder"
+                        role="img"
+                        aria-label="Screenshot placeholder for the Horror Movie Database">
+                    <span>Project screenshot</span>
+                    <figcaption>Placeholder — add a project screenshot here.</figcaption>
+                </figure>
+
+                <div class="project-content">
+
+                    <span class="project-type">
+                        PERSONAL PROJECT
+                    </span>
+
+                    <h3>
+                        Horror Movie Database
+                    </h3>
+
+                    <p>
+                        A searchable film catalog intended to help horror fans
+                        discover movies and keep track of titles to watch.
+                    </p>
+
+                </div>
+
+                <a href="software-development/horror-movie-db/index.html" class="project-link">
+
+                    View Project →
+
+                </a>
+
+            </article>
+
+
+            <!-- Financial Data Tracker -->
+
+            <article class="project-card">
+
+                <figure class="project-image-placeholder"
+                        role="img"
+                        aria-label="Screenshot placeholder for the Financial Tracker">
+                    <span>Project screenshot</span>
+                    <figcaption>Placeholder — add a project screenshot here.</figcaption>
+                </figure>
+
+                <div class="project-content">
+
+                    <span class="project-type">
+                        PERSONAL PROJECT
+                    </span>
+
+                    <h3>Financial Tracker</h3>
+
+                    <p>
+                        An application for organizing personal income,
+                        expenses, savings, and debt information.
+                    </p>
+
+                </div>
+
+                <a href="software-development/finance-tracker/index.html"
+                   class="project-link">
+
+                    View Project →
+
+                </a>
+
+            </article>
+
+
+        </div>
+
+        <div class="section-action">
+            <a href="software-development/index.html" class="btn">
+                Explore Software Projects →
+            </a>
         </div>
 
     </section>
-
 
     <!-- Skills -->
 
@@ -200,58 +266,23 @@
         <div class="skills-grid">
 
             <div class="skill-group">
-
-                <h3>
-                    Programming
-                </h3>
-
-                <p>
-                    Java, Python, JavaScript, TypeScript,
-                    PHP, HTML, CSS
-                </p>
-
+                <h3>Programming</h3>
+                <p>Java, Python, JavaScript, TypeScript, PHP, HTML, CSS</p>
             </div>
 
-
             <div class="skill-group">
-
-                <h3>
-                    Data
-                </h3>
-
-                <p>
-                    SQL, MySQL, database design,
-                    relational databases
-                </p>
-
+                <h3>Data</h3>
+                <p>SQL, MySQL, database design, relational databases</p>
             </div>
 
-
             <div class="skill-group">
-
-                <h3>
-                    Development
-                </h3>
-
-                <p>
-                    React, FastAPI, REST APIs,
-                    Git, GitHub, web development
-                </p>
-
+                <h3>Development</h3>
+                <p>React, FastAPI, REST APIs, Git, GitHub, web development</p>
             </div>
 
-
             <div class="skill-group">
-
-                <h3>
-                    Cybersecurity
-                </h3>
-
-                <p>
-                    Kali Linux, Nmap, Wireshark,
-                    Metasploit, Wazuh, Security Onion
-                </p>
-
+                <h3>Cybersecurity</h3>
+                <p>Kali Linux, Nmap, Wireshark, Metasploit, Wazuh, Security Onion</p>
             </div>
 
         </div>
@@ -259,112 +290,21 @@
     </section>
 
 
-    <!-- Software Projects -->
+    <!-- About -->
 
-    <section class="section" id="projects">
+    <section class="section" id="about">
 
         <div class="section-heading">
+            <p class="eyebrow">ABOUT</p>
+            <h2>Software engineering grounded in practical problem-solving.</h2>
+        </div>
 
-            <p class="eyebrow">
-                SOFTWARE DEVELOPMENT
-            </p>
-
-            <h2>
-                Selected projects
-            </h2>
-
+        <div class="about-content">
             <p>
-                Projects demonstrating software development,
-                databases, APIs, and full-stack application work.
+                I build and document software projects and hands-on security
+                labs, with an emphasis on careful testing and understanding how
+                systems behave.
             </p>
-
-        </div>
-
-
-        <div class="projects-grid">
-
-
-            <!-- Horror Movie Database -->
-
-            <article class="project-card">
-
-                <div class="project-content">
-
-                    <span class="project-type">
-                        PERSONAL PROJECT
-                    </span>
-
-                    <h3>
-                        Horror Movie Database
-                    </h3>
-
-                    <p>
-                        Search and explore horror titles, then organize a
-                        personal watchlist with ratings and reviews.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>React</span>
-                        <span>Express</span>
-                        <span>MySQL</span>
-
-                    </div>
-
-                </div>
-
-                <a href="software-development/horror-movie-db/index.html" class="project-link">
-
-                    View Project →
-
-                </a>
-
-            </article>
-
-
-            <!-- Financial Data Tracker -->
-
-            <article class="project-card">
-
-                <div class="project-content">
-
-                    <span class="project-type">
-                        PERSONAL PROJECT
-                    </span>
-
-                    <h3>Financial Tracker</h3>
-
-                    <p>
-                        Track income and spending, review a financial snapshot,
-                        and monitor debt balances in one full-stack app.
-                    </p>
-
-                    <div class="tags">
-
-                        <span>React</span>
-                        <span>TypeScript</span>
-                        <span>FastAPI</span>
-
-                    </div>
-
-                </div>
-
-                <a href="software-development/finance-tracker/index.html"
-                   class="project-link">
-
-                    View Project →
-
-                </a>
-
-            </article>
-
-
-        </div>
-
-        <div class="section-action">
-            <a href="software-development/index.html" class="btn">
-                Explore Software Projects →
-            </a>
         </div>
 
     </section>
@@ -507,6 +447,10 @@
 
         <div class="contact-links">
 
+            <a href="mailto:YOUR_EMAIL_ADDRESS">
+                Email: YOUR_EMAIL_ADDRESS
+            </a>
+
             <a href="https://www.linkedin.com/in/kypton-lantz/"
                target="_blank"
                rel="noopener noreferrer">
@@ -523,6 +467,7 @@
 
     </section>
 
+    </main>
 
     <!-- Footer -->
 

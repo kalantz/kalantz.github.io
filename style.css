@@ -55,6 +55,7 @@ a:focus-visible {
 
 img {
     max-width: 100%;
+    height: auto;
 }
 
 :focus-visible {
@@ -187,16 +188,6 @@ section[id] {
     gap: 0.75rem;
     margin-top: 1.5rem;
 }
-
-.hero-social-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1.25rem;
-    font-size: 0.92rem;
-    font-weight: 600;
-}
-
 
 /* =========================================================
    General Content
@@ -540,26 +531,8 @@ section[id] {
     margin-top: 1.5rem;
 }
 
-.lab-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.lab-card .lab-status {
-    margin-top: 0.8rem;
-}
-
 .lab-card .text-link {
     margin-top: 0.4rem;
-}
-
-.lab-group .lab-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.lab-grid .lab-card {
-    min-width: 0;
 }
 
 .lab-navigation {
@@ -612,8 +585,7 @@ footer:not(.footer) {
 .result-card,
 .card,
 .skill-group,
-.project-card,
-.lab-card {
+.project-card {
     transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -621,21 +593,6 @@ footer:not(.footer) {
 .card:hover,
 .skill-group:hover {
     border-color: #3b5268;
-}
-
-
-/* =========================================================
-   Lab Status
-   ========================================================= */
-
-.lab-status {
-    display: inline-block;
-
-    color: var(--accent);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
 }
 
 
@@ -752,7 +709,6 @@ code {
    Evidence Gallery
    ========================================================= */
 
-/* Evidence Gallery */
 .evidence-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -761,11 +717,26 @@ code {
 }
 
 .evidence-card {
+    min-width: 0;
+    margin: 0;
     background: var(--surface);
     border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 1rem;
     overflow: hidden;
+}
+
+.evidence-card img {
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.evidence-card figcaption {
+    margin-top: 0.9rem;
+    color: var(--muted-text);
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 .evidence-card.wide {
@@ -818,8 +789,10 @@ code {
 }
 
 .lab-card {
-    display: block;
-
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
     padding: 1.5rem;
 
     border: 1px solid var(--border-color);
@@ -846,13 +819,6 @@ code {
     margin-bottom: 0;
     color: var(--muted-text);
 }
-
-.lab-grid .lab-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
 
 /* =========================================================
    Software Projects
@@ -893,29 +859,39 @@ code {
     letter-spacing: 0.1em;
 }
 
-.project-tech-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 0;
-    margin: 0 0 1rem;
-    list-style: none;
-}
-
-.project-tech-list li,
-.tags span {
-    padding: 0.2rem 0.55rem;
-    border: 1px solid var(--border-color);
-    border-radius: 999px;
-    color: var(--muted-text);
-    font-size: 0.8rem;
-}
-
 .project-link {
     display: inline-block;
-    margin-top: auto;
+    margin-top: 0.75rem;
     padding-top: 0.75rem;
     font-weight: 600;
+}
+
+.project-card .project-link:first-of-type {
+    margin-top: auto;
+}
+
+.project-image-placeholder {
+    display: grid;
+    min-height: 11rem;
+    align-content: center;
+    justify-items: center;
+    gap: 0.35rem;
+    margin: 0 0 1rem;
+    padding: 1.25rem;
+    border: 1px dashed #40566b;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--surface-light), var(--surface));
+    color: var(--muted-text);
+    text-align: center;
+}
+
+.project-image-placeholder span {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.project-image-placeholder figcaption {
+    font-size: 0.85rem;
 }
 
 .section-action {
@@ -923,10 +899,6 @@ code {
     text-align: center;
 }
 
-
-/* =========================================================
-   Footer
-   ========================================================= */
 
 /* =========================================================
    Responsive Layout

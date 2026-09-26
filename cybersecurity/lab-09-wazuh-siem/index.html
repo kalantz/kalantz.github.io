@@ -22,21 +22,34 @@
         <div class="hero-content">
             <p class="eyebrow">CYBERSECURITY LAB 09</p>
             <h1>Wazuh SIEM</h1>
-            <p class="hero-subtitle">Exploring host-based monitoring, security events, and SIEM workflows with Wazuh.</p>
+            <p class="hero-subtitle">Centralizing Windows and Linux endpoint telemetry with Wazuh SIEM.</p>
         </div>
     </header>
     <main class="content-narrow">
         <section class="content-section">
             <h2>Lab Overview</h2>
-            <p>This lab focuses on using Wazuh to collect and review endpoint telemetry. It introduces centralized security monitoring and the investigation of host alerts.</p>
+            <p>Wazuh was deployed as a centralized SIEM and connected to Windows and Linux agents in the isolated lab. After establishing a telemetry baseline, the investigation reviewed file-integrity monitoring, authentication failures, process activity, and PowerShell-related events.</p>
         </section>
         <section class="content-section">
             <h2>Areas of Focus</h2>
             <ul>
-                <li>Endpoint agents and host telemetry</li>
-                <li>Security alerts and event investigation</li>
-                <li>Centralized monitoring and SIEM workflows</li>
+                <li>Wazuh agents on Windows and Linux endpoints</li>
+                <li>Baseline telemetry and endpoint event investigation</li>
+                <li>File-integrity, authentication, process, and PowerShell monitoring</li>
             </ul>
+        </section>
+        <section class="content-section">
+            <h2>Selected Evidence</h2>
+            <div class="evidence-grid">
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/09-Wazuh-SIEM/main/screenshots/04-wazuh-dashboard.png" alt="Wazuh SIEM dashboard for the home lab" loading="lazy">
+                    <figcaption>Central monitoring view for connected lab endpoints.</figcaption>
+                </figure>
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/09-Wazuh-SIEM/main/screenshots/12-wazuh-win11-fim.png" alt="Wazuh file-integrity monitoring alert from the Windows 11 endpoint" loading="lazy">
+                    <figcaption>File-integrity monitoring evidence from a Windows endpoint.</figcaption>
+                </figure>
+            </div>
         </section>
         <section class="content-section">
             <h2>Lab Repository</h2>

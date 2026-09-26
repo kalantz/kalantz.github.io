@@ -22,21 +22,34 @@
         <div class="hero-content">
             <p class="eyebrow">CYBERSECURITY LAB 07</p>
             <h1>Web Application Security</h1>
-            <p class="hero-subtitle">Assessing web application behavior and security controls in an intentionally controlled testing environment.</p>
+            <p class="hero-subtitle">Testing common web application weaknesses against intentionally vulnerable lab applications.</p>
         </div>
     </header>
     <main class="content-narrow">
         <section class="content-section">
             <h2>Lab Overview</h2>
-            <p>This lab explores common web application security weaknesses and the validation of security controls. Testing is limited to designated lab applications and systems.</p>
+            <p>Against DVWA and Mutillidae on the isolated Metasploitable 2 system, the lab examined web-service discovery, SQL injection, cross-site scripting, local file inclusion, path traversal, and authentication and session behavior.</p>
         </section>
         <section class="content-section">
             <h2>Areas of Focus</h2>
             <ul>
-                <li>Request and response inspection</li>
-                <li>Common application vulnerability categories</li>
-                <li>Input handling, access control, and defensive validation</li>
+                <li>Burp Suite and Gobuster for request inspection and discovery</li>
+                <li>SQL injection, XSS, LFI, and path-traversal testing</li>
+                <li>Authentication, session handling, and client-controlled state</li>
             </ul>
+        </section>
+        <section class="content-section">
+            <h2>Selected Evidence</h2>
+            <div class="evidence-grid">
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/07-Web-Application-Security/main/screenshots/web-service-discovery.png" alt="Web services discovered on the intentionally vulnerable lab host" loading="lazy">
+                    <figcaption>Web-service discovery on the isolated target.</figcaption>
+                </figure>
+                <figure class="evidence-card">
+                    <img src="https://raw.githubusercontent.com/kalantz/07-Web-Application-Security/main/screenshots/sqli-success.png" alt="SQL injection test demonstrating an application response" loading="lazy">
+                    <figcaption>Observed SQL injection behavior in the test application.</figcaption>
+                </figure>
+            </div>
         </section>
         <section class="content-section">
             <h2>Lab Repository</h2>
