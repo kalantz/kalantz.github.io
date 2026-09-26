@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Horror Movie Database project by Kypton Lantz.">
+    <title>Horror Movie Database | Kypton Lantz</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="logo" aria-label="Kypton Lantz home">KL</a>
+            <div class="nav-links">
+                <a href="../../index.html">Home</a>
+                <a href="../index.html">Projects</a>
+                <a href="../../cybersecurity/index.html">Cybersecurity</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <p class="eyebrow">PERSONAL PROJECT</p>
+            <h1>Horror Movie Database</h1>
+            <p class="hero-subtitle">
+                A full-stack movie catalog for horror fans to discover films,
+                organize a watchlist, and share ratings and reviews.
+            </p>
+            <a class="btn" href="https://github.com/kalantz/horror-movie-db"
+               target="_blank" rel="noopener noreferrer">View Source on GitHub →</a>
+        </div>
+    </header>
+
+    <main class="content-narrow">
+        <section class="content-section">
+            <h2>Project Overview</h2>
+            <p>
+                Horror Movie Database combines a searchable film catalog with
+                personal features for tracking movies. Visitors can explore film
+                details and filter the collection, while signed-in users can
+                maintain watchlists and contribute ratings and reviews.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2>Key Features</h2>
+            <div class="result-grid">
+                <article class="result-card">
+                    <h3>Search & Discovery</h3>
+                    <p>Search by title or plot, filter by subgenre and credits, and sort movie results.</p>
+                </article>
+                <article class="result-card">
+                    <h3>Movie Information</h3>
+                    <p>Explore release date, runtime, director, cast, production companies, plot, and subgenres.</p>
+                </article>
+                <article class="result-card">
+                    <h3>Watchlist</h3>
+                    <p>Registered users can save films, update watched status, and manage a personal watchlist.</p>
+                </article>
+                <article class="result-card">
+                    <h3>Ratings & Reviews</h3>
+                    <p>Users can rate films and write reviews, with review listings available for each movie.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Technology & Structure</h2>
+            <p>
+                The frontend uses React 18, React Router, Axios, and Context API.
+                The Node.js and Express backend exposes API routes backed by
+                MySQL. The application also uses JWT authentication, bcrypt
+                password hashing, and request rate limiting.
+            </p>
+            <p>Movie discovery and detail import can use The Movie Database (TMDb) API.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>Project Links</h2>
+            <p><a href="https://github.com/kalantz/horror-movie-db"
+                  target="_blank" rel="noopener noreferrer">Source repository →</a></p>
+            <p><a href="../index.html">Back to software projects →</a></p>
+        </section>
+    </main>
+
+    <footer class="footer"><a href="../../index.html">Back to the main portfolio</a></footer>
+</body>
+</html>

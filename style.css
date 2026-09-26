@@ -433,6 +433,76 @@ code {
 
 
 /* =========================================================
+   Software Projects
+   ========================================================= */
+
+.projects-grid,
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--surface);
+}
+
+.project-card h3 {
+    margin: 0.5rem 0;
+}
+
+.project-card h3 a {
+    color: var(--text);
+}
+
+.project-card p {
+    color: var(--muted-text);
+}
+
+.project-type {
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.project-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0 0 1rem;
+    list-style: none;
+}
+
+.project-tech-list li,
+.tags span {
+    padding: 0.2rem 0.55rem;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    color: var(--muted-text);
+    font-size: 0.8rem;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    font-weight: 600;
+}
+
+.section-action {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+
+/* =========================================================
    Footer
    ========================================================= */
 
@@ -475,6 +545,8 @@ code {
     }
 
     .result-grid,
+    .projects-grid,
+    .project-grid,
     .lab-grid,
     .evidence-grid {
         grid-template-columns: 1fr;
